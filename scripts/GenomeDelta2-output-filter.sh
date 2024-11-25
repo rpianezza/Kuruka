@@ -1,52 +1,63 @@
 #!/bin/bash
 
-# Check if required arguments are provided
-if [ "$#" -lt 4 ]; then
-    echo "Usage: $0 <input_folder> <protein_library> <output_folder> <similarity_threshold> <length_threshold> <threads>"
+# Bash script to filter all FASTA files, concatenate the results, and run CD-HIT
+# Usage: ./filter_and_cdhit.sh --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER --min MIN_LENGTH --max MAX_LENGTH --cov MIN_COV --output_prefix OUTPUT_PREFIX --identity IDENTITY
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER --min MIN_LENGTH --max MAX_LENGTH --cov MIN_COV --output_prefix OUTPUT_PREFIX --identity IDENTITY"
     exit 1
+}
+
+# Parse arguments using argparse-like syntax
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --input_folder) input_folder="$2"; shift ;;
+        --output_folder) output_folder="$2"; shift ;;
+        --min) min_length="$2"; shift ;;
+        --max) max_length="$2"; shift ;;
+        --cov) min_cov="$2"; shift ;;
+        --output_prefix) output_prefix="$2"; shift ;;
+        --identity) identity="$2"; shift ;;
+        *) echo "Unknown parameter: $1"; usage ;;
+    esac
+    shift
+done
+
+# Check required arguments
+if [[ -z "$input_folder" || -z "$output_folder" || -z "$min_length" || -z "$max_length" || -z "$min_cov" || -z "$output_prefix" || -z "$identity" ]]; then
+    echo "Missing required arguments."
+    usage
 fi
 
-# Command-line arguments
-INPUT_FOLDER="$1"
-PROTEIN_LIBRARY="$2"
-OUTPUT_FOLDER="$3"
-SIMILARITY_THRESHOLD="$4"
-LENGTH_THRESHOLD="$5"
-THREADS="$6"
+# Create the output folder if it doesn't exist
+mkdir -p "$output_folder"
 
-# Step 1: Concatenate all FASTA files in the input folder
-echo "Concatenating all FASTA files in $INPUT_FOLDER..."
-mkdir -p "$OUTPUT_FOLDER"  # Ensure output folder exists
-cat "$INPUT_FOLDER"/*.fasta > "$OUTPUT_FOLDER/concatenated_sequences.fasta"
+# Step 1: Filter all FASTA files
+echo "Filtering FASTA files..."
+for fasta_file in "$input_folder"/*.fasta; do
+    if [[ -f "$fasta_file" ]]; then
+        # Get the base name of the file
+        base_name=$(basename "$fasta_file")
+        # Define the output file path
+        output_file="$output_folder/$base_name"
+        # Run the Python script to filter the FASTA file
+        python3 fasta2goodcandidates.py "$fasta_file" --min "$min_length" --max "$max_length" --cov "$min_cov" > "$output_file"
+        echo "Filtered $fasta_file -> $output_file"
+    fi
+done
 
-# Step 2: Perform BLASTx against the given protein library
-BLAST_OUTPUT="$OUTPUT_FOLDER/blast.tsv"
-echo "Running BLASTx..."
-blastx -query "$OUTPUT_FOLDER/concatenated_sequences.fasta" \
-       -db "$PROTEIN_LIBRARY" \
-       -num_threads "$THREADS" \
-       -outfmt "6 qseqid pident length" \
-       -out "$BLAST_OUTPUT"
+# Step 2: Concatenate all filtered FASTA files
+echo "Concatenating all filtered FASTA files..."
+concatenated_file="$output_folder/${output_prefix}_combined.fasta"
+cat "$output_folder"/*.fasta > "$concatenated_file"
+echo "All files concatenated into $concatenated_file"
 
-# Step 3: Filter matches based on similarity and length thresholds
-FILTERED_CONTIGS="$OUTPUT_FOLDER/TE-contigs.txt"
-echo "Filtering matches with similarity > $SIMILARITY_THRESHOLD and length > $LENGTH_THRESHOLD..."
-awk -v sim="$SIMILARITY_THRESHOLD" -v len="$LENGTH_THRESHOLD" \
-    '$2 > sim && $3 > len {print $1}' "$BLAST_OUTPUT" | sort | uniq > "$FILTERED_CONTIGS"
-
-# Step 4: Process FASTA files using external Python scripts
-DEFRAG_FASTA="$OUTPUT_FOLDER/concatenated_sequences.defrag.fasta"
-FINAL_FASTA="$OUTPUT_FOLDER/TE-contigs.fasta"
-
-echo "Defragmenting FASTA sequences..."
-python /Volumes/Storage/GitHub/Utilities/defragment-fasta.py \
-       "$OUTPUT_FOLDER/concatenated_sequences.fasta" \
-       "$DEFRAG_FASTA"
-
-echo "Filtering FASTA sequences..."
-python /Volumes/Storage/GitHub/Utilities/filter-fasta.py \
-       "$DEFRAG_FASTA" \
-       "$FILTERED_CONTIGS" \
-       "$FINAL_FASTA"
-
-echo "Process complete. Filtered FASTA saved to $FINAL_FASTA."
+# Step 3: Run CD-HIT on the concatenated file
+echo "Running CD-HIT with identity $identity..."
+cdhit_output="$output_folder/${output_prefix}_cdhit"
+cd-hit -i "$concatenated_file" -o "$cdhit_output" -c "$identity" -n 5 -d 0 -T 4 -M 16000
+echo "CD-HIT clustering complete."
+echo "Output files:"
+echo " - Clusters: ${cdhit_output}.clstr"
+echo " - Filtered sequences: ${cdhit_output}"
