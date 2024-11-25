@@ -1,0 +1,45 @@
+TEST DATASET
+# Download Chassis and reads simulator from https://sourceforge.net/p/simulates/
+
+# Generate reads without TE
+python /Volumes/Storage/GitHub/Utilities/create-reads.py --fasta chasis1M.fasta --coverage 10 --read-length 100 --output empty-reads.fastq --method uniform
+
+# Insert TE (25 copies of the Pele)
+python simulate/define-landscape_random-insertions-freq-range.py --chassis chasis1M.fasta --te-seqs PPI251.fasta --insert-count 25 --min-freq 1 --max-freq 1 --min-distance 500 --N 1 --output dummyTE_invasion.pgd
+
+python2 simulate/build-population-genome.py --pgd dummyTE_invasion.pgd --te-seqs PPI251.fasta --chassis chasis1M.fasta --output dummyTE_invasion.fasta
+
+# Generate reads with TE
+python /Volumes/Storage/GitHub/Utilities/create-reads.py --fasta dummyTE_invasion.fasta --coverage 10 --read-length 100 --output TE-reads.fastq --method uniform
+
+
+CALL
+bash GenomeDelta2.sh /mnt/data2/riccardo/dmel-china/merged/SRR23103753.fastq.gz ../dmel-data/Dmel-reference.fna ../dmel-data/human-wolbachia-bacteria.fasta ../test-china 50 --identity_threshold 0.05 --alignment_length_threshold 0.9
+
+ls /mnt/data2/riccardo/dmel-china/merged/*.fastq.gz | parallel -j 4 bash GenomeDelta2.sh {} ../dmel-data/Dmel-reference.fna ../dmel-data/human-wolbachia-bacteria.fasta ../test-china3 50 --identity_threshold 0.05 --alignment_length_threshold 0.9
+PID 2311754
+
+
+BLAST CHECK ON 285 ASSEMBLIES + OTHER BLASTS
+for QUERY in /Volumes/Storage/data/285assemblies/285assemblies/*.fasta; do \
+    blastn -query "$QUERY" -subject contig1-SRR23103755.fasta -outfmt 6 | \
+    awk '$3>95' | awk '$4>3000' | \
+    awk -v file="$(basename "$QUERY")" '{print file "\t" $0}' >> contig1-SRR23103755-blast-285genomes.tsv; \
+done
+
+blastn -query utilities/new-TEs.fasta -subject test-dmel/assembly-oregon/contigs.fasta -out test-dmel/oregon.blast.tsv -outfmt 6
+
+blastn -query ../../utilities/dmel-TEs-update.fasta -subject contigs.fasta -outfmt 6 | awk '$3>97' | awk '$4>500'
+
+
+PROTEIN DATABASE DOWNLOAD
+while read acc; do
+  wget "https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=protein&report=fasta&format=text&id=$acc" -O "$acc.fasta"
+done < sequence.seq
+
+
+OUTPUT PROCESSING
+blastx -query full.output.fa -subject ../transposons-proteins/transposons-clean.fasta -outfmt 6 > blast/TE-proteins.tsv
+
+bash GenomeDelta2-output-filter.sh --input_folder ../OUTPUT/china --output_folder ../OUTPUT/china-candidates --min 500 --max 5000 --cov 30 --output_prefix china --identity 0.9
+
