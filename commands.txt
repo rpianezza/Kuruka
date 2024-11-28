@@ -31,6 +31,11 @@ blastn -query utilities/new-TEs.fasta -subject test-dmel/assembly-oregon/contigs
 
 blastn -query ../../utilities/dmel-TEs-update.fasta -subject contigs.fasta -outfmt 6 | awk '$3>97' | awk '$4>500'
 
+for QUERY in /Volumes/Storage/data/285assemblies/285assemblies/*.fasta; do \
+    blastn -query "$QUERY" -subject /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/china-candidates/TE-candidates.fasta -outfmt 6 | \  
+    awk -v file="$(basename "$QUERY")" '{print file "\t" $0}' >> /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/china-candidates/blast285assemblies.tsv; \
+done
+
 
 PROTEIN DATABASE DOWNLOAD
 while read acc; do
@@ -38,8 +43,13 @@ while read acc; do
 done < sequence.seq
 
 
-OUTPUT PROCESSING
-blastx -query full.output.fa -subject ../transposons-proteins/transposons-clean.fasta -outfmt 6 > blast/TE-proteins.tsv
-
-bash GenomeDelta2-output-filter.sh --input_folder ../OUTPUT/china --output_folder ../OUTPUT/china-candidates --min 500 --max 5000 --cov 30 --output_prefix china --identity 0.9
-
+OUTPUT FILTER CALL
+bash GenomeDelta2-output-filter.sh \                                                                        
+    --input_folder ../OUTPUT/china \
+    --output_folder ../OUTPUT/china-candidates \
+    --min 500 \
+    --max 10000 \
+    --cov 30 \
+    --output_prefix china \
+    --blast_identity 90 \
+    --min_match_len 250
