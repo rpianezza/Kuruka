@@ -1,0 +1,45 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+theme_set(theme_bw())
+```
+
+```{}
+RepeatMasker -pa 20 -no_is -s -nolow -dir ../RM-derecta -lib ../before-longreads/ref/kuruka-derecta.fasta TG_ND_dmel.fasta
+```
+
+```{r}
+columns_paf <- c("query","qlen","qstart","qend","strand","ref","reflen","refstart","refend","matching_bases","matching_including_gaps","quality")
+
+(paf_derecta <- read_tsv("/Volumes/Storage/kuruka/minimap-derecta/minimap-output.paf", col_names = columns_paf) %>% filter(strand %in% c("+", "-")) %>% type_convert())
+
+paf_derecta %>% select(ref) %>% write_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.txt", col_names = FALSE)
+
+#grep -F -f ../minimap-derecta/reads_with_kuruka.txt tg_nd_dmel.fastq > ../minimap-derecta/reads_with_kuruka.fastq
+#Manually convert to fasta
+
+paf_derecta %>% select(ref, refstart, refend, query, qlen, strand) %>% write_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.bed", col_names = FALSE)
+
+#bedtools getfasta -fi /Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.fasta -fo /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.fasta -s -bed /Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.bed
+#mafft -auto /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.fasta > /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA
+#python MSA2consensus.py /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.consensus.fasta
+```
+
+8833 bp consensus.
+514 bp LTR, perfect match.

@@ -1,0 +1,258 @@
+---
+title: "From raw output to TE library"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+theme_set(theme_bw())
+```
+
+Call the pipeline on all of our D. melanogaster short reads data.
+```{}
+ls /mnt/data2/riccardo/dmel-china/merged/*.fastq.gz | parallel -j 4 bash GenomeDelta2.sh {} ../dmel-data/Dmel-reference.fna ../dmel-data/human-wolbachia-bacteria.fasta ../test-china3 50 --identity_threshold 0.05 --alignment_length_threshold 0.9
+```
+
+Call the output-filter script. It takes all the fasta files from one batch, filter them by keeping only significant matches (length > 500 and < 10000, coverage > 30). Then it clusters the sequences to remove redundancy (90% identity, 250 minimum match length). Then it blastX against a TE proteins database and keep only sequences with TE features (match lenght > 100, identity > 35).
+```{}
+bash GenomeDelta2-output-filter.sh \                                                           
+    --input_folder ../OUTPUT/china \
+    --output_folder ../OUTPUT/china-candidates \
+    --min 500 \
+    --max 10000 \
+    --cov 30 \
+    --output_prefix china \
+    --blast_identity 90 \
+    --min_match_len 250
+```
+
+Reclustering with very stringent identity but lower length, to put together fragments of the same TE.
+BLASTn to 285 Drosophilids assemblies to find matches.
+BLASTn to newTEs (Pele, Spoink, MLE, Souslik, Transib1). They are our control (should BE in the dataset).
+```{}
+python clustering.py --input_fasta ../OUTPUT/dmel/TE-candidates.fasta --output_folder ../OUTPUT/dmel/reclustering --blast_identity 99 --min_match_len 100
+
+for cluster_file in reclustering/*.fasta; do [[ -f "$cluster_file" ]] && awk -v cluster_name="$(basename "$cluster_file" .fasta)" '/^>/ {if (s) exit; print ">" cluster_name "_" substr($0,2); s=1; next} s {print}' "$cluster_file" >> /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel/TE-candidates-reclustered.fasta; done
+
+for QUERY in /Volumes/Storage/data/285assemblies/285assemblies/*.fasta; do \
+    blastn -query "$QUERY" -subject /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/china+others/TE-candidates-reclustered.fasta -outfmt 6 |awk -v file="$(basename "$QUERY")" '{print file "\t" $0}' >> /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/china+others/blast285assemblies.tsv; done
+    
+blastn -query /Volumes/Storage/mining/GenomeDelta2.0/utilities/new-TEs.fasta -subject /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/china+others/TE-candidates-reclustered.fasta -outfmt 6 > /Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/china+others/blast-SpoinkMLESouslikTransib1.tsv
+```
+
+
+Removed clusters matching note TEs (>97% similarity for more than 300 bp). Concatenated known DmelTEs to the cleaned library of candidates (for competitive mapping of different variants of the TE), together with 3 scgs found by BUSCO (teGD2-teDMEL-scgs.fasta). Mapping of all the short-reads to the candidates.
+
+```{}
+find /mnt/data2/riccardo/dmel-shortreads/ -name "*.fastq.gz" | parallel -j 5 'n={/.}; bwa bwasw -t 10 ref/teGD2-teDMEL-scgs.fasta {} | samtools sort -@ 10 -m 3G -o mapped2candidates/${n}.sort.bam'
+
+parallel -j 40 "samtools index {}" ::: *.bam
+
+find . -name '*.bam' | parallel -j 40 'n={/.}; samtools view {} | python /mnt/data1/riccardo/failed-TEs/D.melanogaster/dmel-mapstat-weight.py --sam - --fai /mnt/data1/riccardo/failed-TEs/D.melanogaster/ref/teGD2-teDMEL-scgs.fasta.fai --min-mq 0 > /mnt/data1/riccardo/failed-TEs/D.melanogaster/mapped2candidates/copynumber/${n}.tsv'
+```
+
+
+```{}
+# Define the folder containing the copynumber files
+folder_path <- "/Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel-validation/copynumber"
+
+columns <- c("type","name","len","raw","copynumber")
+
+# List all *.ori.out files in the folder
+file_list <- list.files(path = folder_path, pattern = "\\.tsv$", full.names = TRUE)
+
+# Iterate over each file in oriout_folder
+all_cn_data <- tibble(sample = character(), type = character(), name = character(), len = integer(), raw = integer(), copynumber = double())
+
+for (cn_file in file_list) {
+  cn <- read_tsv(cn_file, col_names = columns, skip = 6) %>% mutate(sample = cn_file)
+  print(cn_file)
+  all_cn_data <- bind_rows(all_cn_data, cn)
+  }
+  
+write_tsv(all_cn_data, "/Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel-validation/copynumber.tsv")
+```
+
+```{r}
+metadata <- read_tsv("/Volumes/Storage/mining/GenomeDelta2.0/utilities/dmel-metadata.tsv")
+
+(cn <- read_tsv("/Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel-validation/copynumber.tsv") %>% mutate(sample = gsub("/Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel-validation/copynumber/", "", sample), sample = gsub(".fastq.sort.tsv", "", sample)) %>% inner_join(metadata, by="sample") %>% arrange(desc(copynumber)) %>% filter(str_detect(name, "cluster"))) #%>% filter(study_id!="Shpak2023, sample!="SRR1525770", sample!="SRR14306821"))
+```
+
+```{}
+test <- cn %>% filter(type=="te", ) %>% group_by(name) %>% summarise(max = max(copynumber), min = min(copynumber), diff = max-min) %>% filter(max!=min) %>% filter(max>3, min<0.5)
+
+# Create a vector of unique names from the dataset
+unique_names <- unique(test$name)
+
+# Loop over each unique name
+for (name in unique_names) {
+    # Filter the dataset for the current name
+    subset_data <- cn[cn$name == name, ]
+    
+    # Create the plot for the current subset
+    plot <- ggplot(subset_data, aes(x = year, y = copynumber, color = copynumber)) +
+        geom_point(alpha = 0.5, size = 3) +
+        labs(y = "copynumber", x = "", color = "new alleles frequency") +
+        scale_color_gradient(low = "darkgreen", high = "red") +
+        theme(legend.position = "top", 
+              axis.text.x = element_text(angle = 45, hjust = 1)) +
+        ggtitle(paste("Plot for", name))
+    
+    # Save the plot with ggsave
+    ggsave(filename = paste0("/Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel-validation/figs/plot_", name, ".png"), plot = plot, width = 8, height = 6)
+}
+```
+
+```{r}
+world_map <- map_data("world") %>% filter(region != "Antarctica")
+naeu_map <- world_map %>% filter(lat > 25 & lat < 70, long > -130 & long < 45)
+europe_map <- world_map %>% filter(lat > 36 & lat < 70, long > -10 & long < 40)
+
+good_candidates <- c("cluster_n8-1seqs_cluster_n190-407seqs_SRR23105313-unique.fasta_NODE_6_length_7834_cov_780.005286","cluster_n43-1seqs_cluster_n956-11seqs_SRR8439118-unique.fasta_NODE_85_length_3613_cov_42.063800","cluster_n71-1seqs_cluster_n1818-16seqs_SRR23104007-unique.fasta_NODE_15_length_1994_cov_41.712572","cluster_n77-1seqs_cluster_n2072-6seqs_SRR23105313-unique.fasta_NODE_6697_length_1782_cov_78.463930")
+
+good_candidates_data <- cn %>% filter(name %in% good_candidates)
+
+good_candidates_timeline <- ggplot(good_candidates_data, aes(x = year, y = copynumber, color = copynumber)) +
+        geom_point(alpha = 0.5, size = 3) +
+        labs(y = "copynumber", x = "", color = "copynumber") +
+        scale_color_gradient(low = "darkgreen", high = "red") +
+        theme(legend.position = "top", 
+              axis.text.x = element_text(angle = 45, hjust = 1)) +
+        facet_grid(name ~ ., scales = "free_y")
+
+
+world_map <- map_data("world") %>% filter(region != "Antarctica")
+naeu_map <- world_map %>% filter(lat > 25 & lat < 70, long > -130 & long < 45)
+europe_map <- world_map %>% filter(lat > 36 & lat < 70, long > -10 & long < 40)
+
+for (name in good_candidates) {
+    # Filter data for the current name
+    filtered_data <- good_candidates_data[good_candidates_data$name == name, ]
+    
+    # Create the plot
+    plot <- ggplot() +
+        geom_map(data = world_map, map = world_map, 
+                 aes(long, lat, map_id = region), 
+                 fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
+        geom_point(data = filtered_data, 
+                   aes(x = lon, y = lat, color = copynumber), 
+                   size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.4) +
+        scale_color_gradientn(colours = c("darkgreen", "red", "darkred")) +
+        theme(plot.title = element_text(hjust = 0.5), 
+              axis.text = element_blank(), 
+              axis.title = element_blank(), 
+              axis.ticks = element_blank(), 
+              legend.position = "bottom", 
+              panel.grid = element_blank(), 
+              panel.background = element_rect(fill = "lightblue")) +
+        #facet_wrap(~year) +
+        labs(color = "copynumber") +
+        ggtitle(name) +
+        coord_cartesian(expand = FALSE)
+    
+    # Save the plot
+    ggsave(filename = paste0("/Volumes/Storage/mining/GenomeDelta2.0/OUTPUT/dmel-validation/maps/", name, ".png"), plot = plot, width = 10, height = 8)
+}
+```
+
+```{r}
+(c8 <- cn %>% filter(name == "cluster_n8-1seqs_cluster_n190-407seqs_SRR23105313-unique.fasta_NODE_6_length_7834_cov_780.005286") %>% mutate(period = case_when(year<2010 ~ "<2010", year>=2010 & year<2017 ~ "2010-2017", TRUE ~ "2017-2020")) %>% arrange(desc(copynumber)))
+
+(c8_timeline <- ggplot(c8, aes(x = year, y = copynumber, color = copynumber)) +
+        geom_point(alpha = 0.5, size = 3) +
+        labs(y = "copynumber", x = "", color = "copynumber") +
+        scale_color_gradient(low = "darkgreen", high = "red") +
+        theme(legend.position = "top", 
+              axis.text.x = element_text(angle = 45, hjust = 1)))
+
+(c8_map <- ggplot() +
+        geom_map(data = world_map, map = world_map, 
+                 aes(long, lat, map_id = region), 
+                 fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
+        geom_point(data = c8, 
+                   aes(x = lon, y = lat, color = copynumber), 
+                   size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.4) +
+        scale_color_gradientn(colours = c("darkgreen", "red", "darkred")) +
+        theme(plot.title = element_text(hjust = 0.5), 
+              axis.text = element_blank(), 
+              axis.title = element_blank(), 
+              axis.ticks = element_blank(), 
+              legend.position = "bottom", 
+              panel.grid = element_blank(), 
+              panel.background = element_rect(fill = "lightblue")) +
+        facet_wrap(~period) +
+        labs(color = "copynumber") +
+        ggtitle("TE from Drosophila erecta") +
+        coord_cartesian(expand = FALSE))
+
+```
+
+```{r}
+(c8_timeline_zoom <- ggplot(c8, aes(x = year, y = copynumber, color = copynumber)) +
+        geom_point(alpha = 0.5, size = 3) +
+        labs(y = "copynumber", x = "", color = "copynumber") +
+        scale_color_gradient(low = "darkgreen", high = "red") +
+        theme(legend.position = "top", 
+              axis.text.x = element_text(angle = 45, hjust = 1)) +
+        xlim(2000, 2020))
+
+africa_map <- world_map %>% filter(lat > -45 & lat < 40, long > -20 & long < 55)
+(c8_africa <- c8 %>% filter(lat > -45 & lat < 40, lon > -20 & lon < 55))
+
+asia_map <- world_map %>% filter(lat > 10 & lat < 75, long > 80 & long < 140)
+c8_asia <- c8 %>% filter(lat > 10 & lat < 75, lon > 80 & lon < 140) %>% mutate(period = case_when(year==2017 ~ "2017", year==2020 ~ "2020", TRUE~"<2017"))
+  
+(c8_africa_map <- ggplot() +
+        geom_map(data = africa_map, map = africa_map, 
+                 aes(long, lat, map_id = region), 
+                 fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
+        geom_point(data = c8_africa, 
+                   aes(x = lon, y = lat, color = copynumber), 
+                   size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.4) +
+        scale_color_gradientn(colours = c("darkgreen", "red", "darkred")) +
+        theme(plot.title = element_text(hjust = 0.5), 
+              axis.text = element_blank(), 
+              axis.title = element_blank(), 
+              axis.ticks = element_blank(), 
+              legend.position = "bottom", 
+              panel.grid = element_blank(), 
+              panel.background = element_rect(fill = "lightblue")) +
+        facet_wrap(~period) +
+        labs(color = "copynumber") +
+        ggtitle("TE from Drosophila erecta") +
+        coord_cartesian(expand = FALSE))
+
+(c8_asia_map <- ggplot() +
+        geom_map(data = asia_map, map = asia_map, 
+                 aes(long, lat, map_id = region), 
+                 fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
+        geom_point(data = c8_asia, 
+                   aes(x = lon, y = lat, color = copynumber), 
+                   size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.4) +
+        scale_color_gradientn(colours = c("darkgreen", "red", "darkred")) +
+        theme(plot.title = element_text(hjust = 0.5), 
+              axis.text = element_blank(), 
+              axis.title = element_blank(), 
+              axis.ticks = element_blank(), 
+              legend.position = "bottom", 
+              panel.grid = element_blank(), 
+              panel.background = element_rect(fill = "lightblue")) +
+        facet_wrap(~period) +
+        labs(color = "copynumber") +
+        ggtitle("TE from Drosophila erecta") +
+        coord_cartesian(expand = FALSE))
+```
+

@@ -1,0 +1,85 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+library(ggrepel)
+theme_set(theme_bw())
+```
+
+```{}
+for i in /mnt/data2/riccardo/dmel-longreads/*.fasta; do /home/riccardo/repeatannotation/RepeatMasker/RepeatMasker -pa 20 -no_is -s -nolow -dir . -lib ../ref/kuruka.fasta $i;done
+```
+
+```{r}
+columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
+
+folder_path <- "/Volumes/Storage/kuruka/RM-285/"
+file_list <- list.files(path = folder_path, pattern = "\\.ori\\.out$", full.names = TRUE)
+
+read_and_process <- function(file) {
+  df <- read_table(file, col_names = columns_RM) %>%
+    mutate(sample = basename(file))  # Add sample column with filename
+  return(df)
+}
+
+combined_data <- map_dfr(file_list, read_and_process) %>% mutate(name = gsub(".fasta.ori.out", "", sample))
+write_tsv(combined_data, "/Volumes/EXT-RICCARDO/presentations/kuruka-RM.tsv")
+```
+
+```{r}
+(defragmented <- combined_data %>% select(pdiv, name, contig, qstart, qend, strand, position_in_repeat_begin, position_in_repeat_end, position_in_repeat_left) %>%
+   arrange(name, contig, qstart) %>%
+   mutate(to_merge = ifelse(name == lead(name) & contig == lead(contig) & strand == lead(strand) & qend >= lead(qstart) - 250, TRUE, FALSE), match_len = qend-qstart))
+
+(merged <- defragmented %>%
+  mutate(
+    qend = ifelse(to_merge, coalesce(lead(qend), qend), qend),  # Avoids NA issues in last row
+    pdiv = ifelse(to_merge, (pdiv/100) * (match_len/(qend-qstart)) + (lead(pdiv)/100) * (lead(match_len)/(qend-qstart)), pdiv),
+    match_len = qend-qstart,
+    pdiv = pdiv * 100) %>%
+  filter(to_merge == TRUE) %>%
+  select(name, contig, qstart, qend, match_len, pdiv, strand))
+```
+
+
+```{r}
+(biogeo <- read_tsv("/Volumes/Storage/kuruka/metadata/metadata-biogeography.tsv"))
+
+(plottable <- merged %>%
+  mutate(match_len = qend - qstart) %>%
+  group_by(name) %>%
+  filter(pdiv == min(pdiv)) %>%
+  filter(match_len == max(match_len)) %>%
+  inner_join(biogeo, by = "name") %>%
+  arrange(desc(match_len)) %>%
+  ungroup())
+
+# Create a data frame for the custom label
+label_data <- data.frame(x = 8650, y = 65, label = "Length of Kuruka consensus", realm1 = NA)
+
+# Plot
+ggplot(plottable, aes(x = match_len, y = 100 - pdiv, fill = realm1)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.5, color = "black") +  # Shape 21 = dots with border
+  scale_fill_manual(values = c("red", "violet", "orange", "lightblue", "darkgreen", "purple", "blue")) + 
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Match length (bp)", y = "Sequence similarity (%)", fill = "Realm") + 
+  geom_text_repel(data = plottable %>% filter(match_len > 5000 | (pdiv < 10 & match_len > 1000)), 
+                  aes(label = name), size = 2.8, box.padding = 0.6, max.overlaps = 18) + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833), limits = c(0, 8833))  # Set custom x-axis breaks
+```
