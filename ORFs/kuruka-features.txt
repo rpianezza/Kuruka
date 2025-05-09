@@ -1,0 +1,7 @@
+TE	feature	ORFfinder_ID	strand	frame	start	stop	length_nt	length_aa	blastp	forward_strand
+Kuruka	LTR	NA	+	NA	0	514	514	NA	LTR	1
+Kuruka	Protein	44	-	3	1811	414	1398	465	Env	0
+Kuruka	Protein	29	-	1	4333	2050	2283	760	RT	0
+Kuruka	Protein	33	-	2	5364	4288	1077	358	RT	0
+Kuruka	Protein	42	-	3	6752	5559	1194	397	Gag	0
+Kuruka	LTR	NA	+	NA	8319	8833	514	NA	LTR	1

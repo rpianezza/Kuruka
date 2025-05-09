@@ -1,0 +1,287 @@
+name	genus	species	subspecies	species_group	species_subgroup	group	group2	realm1	realm2	region		notes
+A.albilabris	Amiota	albilabris				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		
+A.communis	Amiota	communis				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		
+A.mariae	Amiota	mariae				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		
+A.minor	Amiota	minor				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		
+C.amoena	Chymomyza	amoena				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		introduced in PA
+C.caudatula	Chymomyza	caudatula				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		introduced in NE
+C.costata	Chymomyza	costata				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		introduced in NE
+C.indagator.DO22-1	Cacoxenus	indagator				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		
+C.indagator.DO22-2	Cacoxenus	indagator				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		
+C.kirishimana	Collessia	kirishimana				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+C.kotana	Colocasiomyia	kotana				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+C.procnemis	Chymomyza	procnemis				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		introduced in PA
+D.acutilabella	Drosophila	acutilabella			cardini	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		
+D.aff.chauvacae	Drosophila	chauvacae		melanogaster		melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		
+D.affinis	Drosophila	affinis		obscura	affinis	obscura	obscura	Nearctic	Nearctic	Nearctic		
+D.aldrichi	Drosophila	aldrichi		repleta	mulleri	virilis-repleta	virilis-repleta	Australasian	Australasian	EastAsia-Oceania		Introduced in NE
+D.algonquin	Drosophila	algonquin		obscura	affinis	obscura	obscura	Nearctic	Nearctic	Nearctic		
+D.ambigua	Drosophila	ambigua		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		
+D.americana	Drosophila	americana		virilis	americana	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.ananassae	Drosophila	ananassae		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		circumtropical
+D.anceps	Drosophila	anceps		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.anomalata	Drosophila	anomalata		melanogaster	ananassae	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.anomalipes	Drosophila	anomalipes		anomalipes		hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.anomelani	Drosophila	anomelani		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.arawakana	Drosophila	arawakana		cardini	dunni	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		
+D.atripex	Drosophila	atripex		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.atroscutellata	Drosophila	atroscutellata				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.austrosaltans	Drosophila	austrosaltans		saltans	saltans	saltans	saltans	Neotropic	Neotropic	Neotropic		
+D.basisetae	Drosophila	basisetae		grimshawi	punalua	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.biarmipes.09	Drosophila	biarmipes		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.biarmipes	Drosophila	biarmipes		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.bipectinata	Drosophila	bipectinata		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.birchii	Drosophila	birchii		melanogaster	montium	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.bocqueti	Drosophila	bocqueti		melanogaster	montium	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		
+D.borealis	Drosophila	borealis		virilis		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.bunnanda	Drosophila	bunnanda		melanogaster	montium	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.buzzatii	Drosophila	buzzatii		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.cardini	Drosophila	cardini		cardini	cardini	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		
+D.carrolli	Drosophila	carrolli		melanogaster	rhopaloa	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.cognata	Drosophila	cognata		antopocerus	diamphidiopoda	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.colorata	Drosophila	colorata		melanica		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.conformis	Drosophila	conformis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.cracens	Drosophila	cracens				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.crucigera	Drosophila	crucigera		grimshawi	crucigera	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.cyrtoloma	Drosophila	cyrtoloma		planitibia	cyrtoloma	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.demipolita	Drosophila	demipolita		haleakalae	anthrax	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.differens	Drosophila	differens		planitibia	planitibia	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.dives	Drosophila	dives		haleakalae	polita	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.dunni	Drosophila	dunni		cardini	dunni	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		
+D.elegans	Drosophila	elegans		melanogaster	elegans	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.emarginata	Drosophila	emarginata		saltans	elliptica	saltans	saltans	Neotropic	Neotropic	Neotropic		
+D.engyochracea	Drosophila	engyochracea		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.eohydei	Drosophila	eohydei		repleta	hydei	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.equinoxialis	Drosophila	equinoxialis		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.ercepeae	Drosophila	ercepeae		melanogaster	ananassae	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		Reunion Island
+D.erecta	Drosophila	erecta		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		
+D.eugracilis	Drosophila	eugracilis		melanogaster	eugracilis	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.ezoana	Drosophila	ezoana		virilis		virilis-repleta	virilis-repleta	Palearctic	Palearctic	Palearctic		
+D.falleni	Drosophila	falleni		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.ficusphila	Drosophila	ficusphila		melanogaster	ficusphila	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.flavopinicola	Drosophila	flavopinicola		pinicola		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.formosana	Drosophila	formosana		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.fulvimacula	Drosophila	fulvimacula		repleta	repleta	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.funebris	Drosophila	funebris		funebris	macrospina	immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		holarctic
+D.fungiperda	Drosophila	fungiperda		haleakalae	fungiperda	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.fuyamai	Drosophila	fuyamai		rhopaloa	fuyamai	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.gaucha	Drosophila	gaucha		mesophragmatica	mesophragmatica	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.glabriapex	Drosophila	glabriapex		grimshawi	pilimana	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.grimshawi	Drosophila	grimshawi		grimshawi	crucigera	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.gunungcola	Drosophila	gunungcola		melanogaster	elegans	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.hamatofila	Drosophila	hamatofila		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.hawaiiensis	Drosophila	hawaiiensis		grimshawi	hawaiiensis	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.helvetica	Drosophila	helvetica		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		
+D.heteroneura	Drosophila	heteroneura		planitibia	planitibia	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.histrio	Drosophila	histrio		histrio		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		
+D.immigrans.12	Drosophila	immigrans		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		Native to IM
+D.immigrans.kari17	Drosophila	immigrans		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		Native to IM
+D.imparisetae	Drosophila	imparisetae				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.incognita	Drosophila	incognita				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.infuscata	Drosophila	infuscata			mimica	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.insularis	Drosophila	insularis		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.jambulina	Drosophila	jambulina		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.kambysellisi	Drosophila	kambysellisi			conjectura	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.kanekoi	Drosophila	kanekoi		virilis		virilis-repleta	virilis-repleta	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+D.kikkawai	Drosophila	kikkawai		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		circumtropical
+D.kokeensis	Drosophila	kokeensis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.kuntzei	Drosophila	kuntzei		quinaria		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		
+D.kurseongensis	Drosophila	kurseongensis		melanogaster	rhopaloa	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.lacicola	Drosophila	lacicola		virilis		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.leonis	Drosophila	leonis		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.lindae	Dichaetophora	lindae				other drosophilids	other drosophilids	Australasian	Australasian	EastAsia-Oceania		
+D.littoralis	Drosophila	littoralis		virilis		virilis-repleta	virilis-repleta	Palearctic	Palearctic	Palearctic		
+D.longiperda	Drosophila	longiperda		haleakalae	cilifemorata	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.lutescens	Drosophila	lutescens		takahashii	lutescens	melanogaster	melanogaster	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+D.macrospina	Drosophila	macrospina		funebris	macrospina	immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.macrothrix	Drosophila	macrothrix		grimshawi	conspicua	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.maculinotata	Drosophila	maculinotata				immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+D.malerkotliana.malerkotliana	Drosophila	malerkotliana	malerkotliana	melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		subcosmopolitan
+D.malerkotliana.pallens	Drosophila	malerkotliana	pallens	melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		subcosmopolitan
+D.mauritiana.01	Drosophila	mauritiana		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		Mauritius
+D.mauritiana.r32	Drosophila	mauritiana		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		Mauritius
+D.mayaguana	Drosophila	mayaguana		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.melanocephala	Drosophila	melanocephala		planitibia	cyrtoloma	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.melanogaster.CanS	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.melanogaster.ISO1	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.melanogaster.RAL737	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.melanogaster.TEN015	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.melanogaster.TOM008	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.melanosoma.C174	Drosophila	melanosoma		haleakalae	scitula	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.melanosoma.C177	Drosophila	melanosoma		haleakalae	scitula	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.mercatorum	Drosophila	mercatorum		repleta	mercatorum	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.meridiana	Drosophila	meridiana		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.meridionalis	Drosophila	meridionalis		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.merina	Drosophila	merina		melanogaster	ananassae	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		Madagascar
+D.mettleri	Drosophila	mettleri		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.mimetica	Drosophila	mimetica		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.mimica	Drosophila	mimica			mimica	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.miranda	Drosophila	miranda		obscura	pseudoobscura	obscura	obscura	Neotropic	Neotropic	Neotropic		
+D.mojavensis	Drosophila	mojavensis		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.monieri	Drosophila	monieri		melanogaster	ananassae	melanogaster	melanogaster	Pacific Islands	Pacific Islands	EastAsia-Oceania		
+D.montana.TW-CO22-7	Drosophila	montana		virilis	montana	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.montana.MK-O21	Drosophila	montana		virilis	montana	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.mulleri	Drosophila	mulleri		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.multiciliata	Drosophila	multiciliata		haleakalae	anthrax	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.murphyi	Drosophila	murphyi		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.neocordata	Drosophila	neocordata		saltans	cordata	saltans	saltans	Neotropic	Neotropic	Neotropic		
+D.neoperkinsi	Drosophila	neoperkinsi		planitibia	cyrtoloma	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.neotestacea	Drosophila	neotestacea		testacea		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.neutralis	Drosophila	neutralis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.nigricruria	Drosophila	nigricruria		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.nigritarsus	Drosophila	nigritarsus				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.nigrovittata	Dettopsomyia	nigrovittata				other drosophilids	other drosophilids					
+D.niveifrons	Drosophila	niveifrons		immigrans	nasuta	immigrans-tripunctata	immigrans-tripunctata	Australasian	Australasian	EastAsia-Oceania		
+D.nr.fundita	Drosophila	nr.fundita				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.nr.medialis.SHC-C101	Drosophila	nr.medialis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.nr.medialis.DKP	Drosophila	nr.medialis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.nr.perissopoda.C167	Drosophila	nr.perissopoda				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.nr.perissopoda.C186	Drosophila	nr.perissopoda				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.obscura	Drosophila	obscura		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		
+D.ochracea.C070	Drosophila	ochracea		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.ochracea.DKP	Drosophila	ochracea		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.oshimai	Drosophila	oshimai		melanogaster	suzukii	suzukii	suzukii	Palearctic	Palearctic	EastAsia-Oceania		Japan
+D.parabipectinata	Drosophila	parabipectinata		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.paracracens	Drosophila	paracracens				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.paramelanica	Drosophila	paramelanica		melanica		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.paranaensis	Drosophila	paranaensis		repleta	mercatorum	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.parthenogenetica	Drosophila	parthenogenetica		cardini	cardini	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		
+D.paucipuncta	Drosophila	paucipuncta		grimshawi	punalua	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.paulistorum.06	Drosophila	paulistorum		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.paulistorum.12	Drosophila	paulistorum		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.pegasa	Drosophila	pegasa		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.peninsularis	Drosophila	peninsularis		repleta	mercatorum	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.percnosoma	Drosophila	percnosoma				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.persimilis	Drosophila	persimilis		obscura	pseudoobscura	obscura	obscura	Nearctic	Nearctic	Nearctic		
+D.phalerata	Drosophila	phalerata		quinaria		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		
+D.picticornis	Drosophila	picticornis		planitibia	picticornis	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.planitibia	Drosophila	planitibia		planitibia	picticornis	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.prosaltans	Drosophila	prosaltans		saltans	saltans	saltans	saltans	Neotropic	Neotropic	Neotropic		
+D.prostipennis	Drosophila	prostipennis		melanogaster	takahashii	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.pruinosa	Drosophila	pruinosa		incertae sedis		immigrans-tripunctata	immigrans-tripunctata	Afrotropic	Afrotropic	Afrotropic		
+D.pseudoananassae.nigrens	Drosophila	pseudoananassae	nigrens	melanogaster	ananassae	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.pseudoananassae.pseudoananassae	Drosophila	pseudoananassae	pseudoananassae	melanogaster	ananassae	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.pseudoobscura	Drosophila	pseudoobscura		obscura	pseudoobscura	obscura	obscura	Nearctic	Cosmopolitan	Nearctic		
+D.pseudotakahashii	Drosophila	pseudotakahashii		melanogaster	takahashii	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.pseudotalamancana	Drosophila	pseudotalamancana		annulimana		virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.pullipes	Drosophila	pullipes		crucigera	pullipes	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.putrida	Drosophila	putrida		testacea		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.quadrilineata	Drosophila	quadrilineata		immigrans	quadrilineata	immigrans-tripunctata	immigrans-tripunctata	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.quasianomalipes	Drosophila	quasianomalipes		anomalipes		hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.quinaria	Drosophila	quinaria		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.recens	Drosophila	recens		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.rellima	Drosophila	rellima		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.repleta.06	Drosophila	repleta		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Cosmopolitan	Neotropic		
+D.repleta.kari30	Drosophila	repleta		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Cosmopolitan	Neotropic		
+D.repletoides	Drosophila	repletoides		tumiditarsus		virilis-repleta	virilis-repleta	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.rhopaloa	Drosophila	rhopaloa		melanogaster	rhopaloa	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.robusta	Drosophila	robusta		robusta	lacertosa	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.rubida	Drosophila	rubida		immigrans	hypocausta	immigrans-tripunctata	immigrans-tripunctata	Australasian	Australasian	EastAsia-Oceania		
+D.rufa	Drosophila	rufa		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.saltans	Drosophila	saltans		saltans	saltans	saltans	saltans	Neotropic	Neotropic	Neotropic		
+D.sechellia	Drosophila	sechellia		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		Seychelles
+D.seclusa	Drosophila	seclusa				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.serrata	Drosophila	serrata		melanogaster	montium	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		
+D.setosimentum	Drosophila	setosimentum				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.siamana	Drosophila	siamana		immigrans	hypocausta	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.silvestris	Drosophila	silvestris		planitibia	planitibia	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.simulans.006	Drosophila	simulans		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.simulans.sz129	Drosophila	simulans		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.simulans.sz232	Drosophila	simulans		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+D.sordidapex	Drosophila	sordidapex				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.sordidula	Drosophila	sordidula		robusta	robusta	virilis-repleta	virilis-repleta	Palearctic	Palearctic	EastAsia-Oceania		Japan
+D.sp.14030-0761.01	Drosophila	sp.14030-0761.01		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.sp.st01m	Drosophila	sp.st01m				immigrans-tripunctata	immigrans-tripunctata					
+D.sproati	Drosophila	sproati		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.stalkeri	Drosophila	stalkeri		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		
+D.sturtevanti	Drosophila	sturtevanti		saltans	sturtevanti	saltans	saltans	Neotropic	Neotropic	Neotropic		
+D.subobscura	Drosophila	subobscura		obscura	obscura	obscura	obscura	Palearctic	Cosmopolitan	Palearctic		
+D.suboccidentalis	Drosophila	suboccidentalis		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.subpulchrella	Drosophila	subpulchrella		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Japan/China
+D.subquinaria	Drosophila	subquinaria		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.subsilvestris	Drosophila	subsilvestris		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		
+D.sucinea	Drosophila	sucinea		willistoni	bocainensis	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.suzukii	Drosophila	suzukii		suzukii	suzukii	suzukii	suzukii	Indo-Malayan	Cosmopolitan	EastAsia-Oceania		ADDED-16/04/24
+D.takahashii	Drosophila	takahashii		melanogaster	takahashii	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.tanythrix	Drosophila	tanythrix		antopocerus	diamphidiopoda	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.teissieri.273.3	Drosophila	teissieri		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		
+D.teissieri.CT02	Drosophila	teissieri		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		
+D.testacea	Drosophila	testacea		testacea		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		holarctic
+D.triauraria	Drosophila	triauraria		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+D.trichaetosa	Drosophila	trichaetosa				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.tripunctata	Drosophila	tripunctata		tripunctata	tripunctata subgroup IV	immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		
+D.tristis	Drosophila	tristis		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		
+D.tropicalis	Drosophila	tropicalis		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.ussurica	Diastata	ussurica				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		
+D.ustulata	Drosophila	ustulata		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		
+D.vallismaia	Drosophila	vallismaia		melanogaster	ananassae	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		Seychelles
+D.varians	Drosophila	varians		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+D.villosipedis	Drosophila	villosipedis		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+D.virilis	Drosophila	virilis		virilis	virilis	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		
+D.willistoni.00	Drosophila	willistoni		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.willistoni.17	Drosophila	willistoni		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		
+D.yakuba	Drosophila	yakuba		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		
+D.yooni	Drosophila	yooni				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+H.alboralis	Hirtodrosophila	alboralis		quadrivittata	trivittata	Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+H.caputudis	Hirtodrosophila	caputudis		quadrivittata	quadrivittata	Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+H.confusa	Hirtodrosophila	confusa		quadrivittata	confusa	Hirtodrosophila	Hirtodrosophila	Palearctic	Palearctic	Palearctic		
+H.duncani	Hirtodrosophila	duncani				Hirtodrosophila	Hirtodrosophila	Nearctic	Nearctic	Nearctic		
+H.guttata	Hypselothyrea	guttata				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+H.histrioides	Hirtodrosophila	histrioides				Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+H.nokogiri	Hirtodrosophila	nokogiri				Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+H.trivittata	Hirtodrosophila	trivittata				Hirtodrosophila	Hirtodrosophila	Palearctic	Palearctic	Palearctic		
+L.aerea.MT83	Liodrosophila	aerea				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+L.aerea.TM23	Liodrosophila	aerea				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+L.andalusiaca	Lordiphosa	andalusiaca				Lordiphosa	Lordiphosa	Palearctic	Palearctic	Palearctic		
+L.clarofinis	Lordiphosa	clarofinis				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania		Korea
+L.collinella	Lordiphosa	collinella				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+L.fenestrarum	Lordiphosa	fenestrarum				Lordiphosa	Lordiphosa	Palearctic	Palearctic	Palearctic		holarctic
+L.maculata	Leucophenga	maculata				other drosophilids	other drosophilids	Palearctic	Indo-Malayan	Palearctic		
+L.magnipectinata	Lordiphosa	magnipectinata				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+L.mommai	Lordiphosa	mommai				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+L.montana	Leucophenga	montana				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		
+L.sabroskyi	Lissocephala	sabroskyi				other drosophilids	other drosophilids	Pacific Islands	Pacific Islands	EastAsia-Oceania		Micronesia
+L.stackelbergi	Lordiphosa	stackelbergi				Lordiphosa	Lordiphosa	Palearctic	Palearctic	Palearctic		
+L.varia	Leucophenga	varia				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		
+M.cristata	Microdrosophila	cristata				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+M.parasiatica	Mulgravea	parasiatica				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+P.flavipennis	Phorticella	flavipennis				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+P.magna	Phortica	magna				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+S.caliginosa	Scaptomyza	caliginosa				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+S.cyrtandrae	Scaptomyza	cyrtandrae				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+S.graminum	Scaptomyza	graminum				Scaptomyza	Scaptomyza	Palearctic	Palearctic	Palearctic		cosmopolitan
+S.hsui	Scaptomyza	hsui				Scaptomyza	Scaptomyza	Nearctic	Nearctic	Nearctic		
+S.javana	Sphaerogastrella	javana				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+S.latifasciaeformis	Scaptodrosophila	latifasciaeformis				Scaptodrosophila	Scaptodrosophila	Afrotropic	Afrotropic	Afrotropic		
+S.montana	Scaptomyza	montana				Scaptomyza	Scaptomyza	Nearctic	Nearctic	Nearctic		
+S.nigrithorax	Stegana	nigrithorax				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		
+S.pallida	Scaptomyza	pallida				Scaptomyza	Scaptomyza	Palearctic	Cosmopolitan	Palearctic		Native to PA
+S.parva	Scaptomyza	parva				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+S.polygonia	Scaptomyza	polygonia				Scaptomyza	Scaptomyza	Indo-Malayan	Palearctic	EastAsia-Oceania		Japan
+S.reducta	Scaptomyza	reducta				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+S.scaptomyzoidea	Scaptodrosophila	scaptomyzoidea				Scaptodrosophila	Scaptodrosophila	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+S.tumidula	Scaptomyza	tumidula				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii		hawaiian
+Z.africanus	Zaprionus	africanus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.bogoriensis	Zaprionus	bogoriensis				Zaprionus	Zaprionus	Australasian	Australasian	EastAsia-Oceania		
+Z.camerounensis	Zaprionus	camerounensis				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.capensis	Zaprionus	capensis				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.davidi	Zaprionus	davidi				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.flavofinira	Zygothrica	flavofinira				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+Z.gabonicus	Zaprionus	gabonicus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.ghesquierei	Zaprionus	ghesquierei				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.indianus.16GNV01	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic		Native to AT
+Z.indianus.BS02	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic		Native to AT
+Z.indianus.CDD18	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic		Native to AT
+Z.indianus.RCR04	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic		Native to AT
+Z.inermis	Zaprionus	inermis				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.kolodkinae	Zaprionus	kolodkinae				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.lachaisei	Zaprionus	lachaisei				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.lineosus	Zaprionus	lineosus				Zaprionus	Zaprionus	Australasian	Australasian	EastAsia-Oceania		
+Z.nigranus	Zaprionus	nigranus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.obscuricornis	Zaprionus	obscuricornis				Zaprionus	Zaprionus	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+Z.ornatus	Zaprionus	ornatus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.quintamaculata	Zygothrica	quintamaculata				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		
+Z.taronus	Zaprionus	taronus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.tsacasi.car7-4	Zaprionus	tsacasi				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.tsacasi.jd01t	Zaprionus	tsacasi				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+Z.vittiger	Zaprionus	vittiger				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		

@@ -1,0 +1,8 @@
+sample	strain	publication	study	study_id	year	location	lat	lon
+Girardot	CO_Tol_Gir_1_2019-04-04	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2019	Colombia	4.489722	-75.31167
+La_vega	CO_Cun_LaV_1_2019-02-21	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2019	Colombia	4.995972	-74.36419
+Los_Arbustos	CO_Cun_Tab_1_2019-12-20	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2019	Colombia	4.967111	-74.08389
+Melgar	CO_Tol_Mel_1_2019-06-11	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2019	Colombia	4.203889	-74.64278
+Minca	CO_Mag_Sie_1_2019-07-24	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2019	Colombia	11.14361	-74.11778
+Santa_Maria	BR_Rio_San_1_2020-01-06	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2020	Brazil	-29.67833	-53.690000
+USP_Sao_Paulo	BR_Sao_USP_1_2019-09-15	https://doi.org/10.1101/2024.11.10.622744	DEST2	Nunez2024	2019	Brazil	-23.99472	-46.2525

@@ -1,0 +1,5 @@
+ORFfinder_ID	strand	frame	start	stop	length_nt	length_aa	blastp
+44	-	3	1811	414	1398	465	Envelope
+29	-	1	4333	2050	2283	760	Reverse transcriptase
+33	-	2	5364	4288	1077	358	Reverse transcriptase
+42	-	3	6752	5559	1194	397	Gag

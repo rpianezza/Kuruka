@@ -1,0 +1,67 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+library(ggrepel)
+theme_set(theme_bw())
+```
+
+```{}
+for i in /mnt/data2/riccardo/dmel-longreads/*.fasta; do /home/riccardo/repeatannotation/RepeatMasker/RepeatMasker -pa 20 -no_is -s -nolow -dir . -lib ../ref/kuruka.fasta $i;done
+```
+
+```{r}
+columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
+
+folder_path <- "/Volumes/Storage/kuruka/RM-arthropods/oriout/"
+file_list <- list.files(path = folder_path, pattern = "\\.defrag\\.out$", full.names = TRUE)
+
+read_and_process <- function(file) {
+  df <- read_table(file, col_names = columns_RM) %>%
+    mutate(across(everything(), as.character)) %>%
+    mutate(sample = basename(file))  # Add sample column with filename
+  return(df)
+}
+
+combined_data <- map_dfr(file_list, read_and_process) %>% mutate(name = gsub(".fna.defrag.out", "", sample))
+write_tsv(combined_data, "/Volumes/Storage/kuruka/RM-arthropods/kuruka-arthropods-RM.tsv")
+```
+
+
+```{r}
+(plottable <- combined_data %>%
+  group_by(name) %>%
+  filter(pdiv == min(pdiv), !(str_detect(name, "Drosophila")), !(str_detect(name, "TOM008"))) %>%
+  filter(match_len == max(match_len)) %>%
+  arrange(desc(match_len)) %>%
+  ungroup())
+
+# Create a data frame for the custom label
+label_data <- data.frame(x = 8650, y = 65, label = "Length of Kuruka consensus", realm1 = NA)
+
+# Plot
+ggplot(plottable, aes(x = match_len, y = 100 - pdiv)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.5, color = "black", fill = "grey") +  # Shape 21 = dots with border
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Match length (bp)", y = "Sequence similarity (%)") + 
+  geom_text_repel(data = plottable %>% filter(match_len > 5000 | (pdiv < 10 & match_len > 1000)), 
+                  aes(label = name), size = 2.8, box.padding = 0.6, max.overlaps = 18) + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833)) +#, limits = c(0, 8833)) +
+  ylim(60, 100)
+```

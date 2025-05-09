@@ -17,6 +17,10 @@ suppressPackageStartupMessages(library(knitr))
 suppressPackageStartupMessages(library(kableExtra))
 suppressPackageStartupMessages(library(ggpubr))
 suppressPackageStartupMessages(library(svglite))
+suppressPackageStartupMessages(library(ggrepel))
+suppressPackageStartupMessages(library(gggenes))
+suppressPackageStartupMessages(library(Biostrings))
+suppressPackageStartupMessages(library(seqinr))
 theme_set(theme_bw())
 ```
 
@@ -31,15 +35,99 @@ columns_paf <- c("query","qlen","qstart","qend","strand","ref","reflen","refstar
 
 paf_derecta %>% select(ref) %>% write_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.txt", col_names = FALSE)
 
-#grep -F -f ../minimap-derecta/reads_with_kuruka.txt tg_nd_dmel.fastq > ../minimap-derecta/reads_with_kuruka.fastq
+paf_derecta %>% select(ref, refstart, refend, query, qlen, strand) %>% write_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.bed", col_names = FALSE)
+```
+
+```{}
+grep -F -f ../minimap-derecta/reads_with_kuruka.txt tg_nd_dmel.fastq > ../minimap-derecta/reads_with_kuruka.fastq
+
 #Manually convert to fasta
 
-paf_derecta %>% select(ref, refstart, refend, query, qlen, strand) %>% write_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.bed", col_names = FALSE)
+bedtools getfasta -fi /Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.fasta -fo /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.fasta -s -bed /Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.bed
 
-#bedtools getfasta -fi /Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.fasta -fo /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.fasta -s -bed /Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.bed
-#mafft -auto /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.fasta > /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA
-#python MSA2consensus.py /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.consensus.fasta
+mafft -auto /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.fasta > /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA
+
+python MSA2consensus.py /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA /Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.consensus.fasta
 ```
 
 8833 bp consensus.
 514 bp LTR, perfect match.
+
+```{r}
+(kuruka_features <- read_tsv("/Volumes/Storage/kuruka/ORFs/kuruka-features.txt"))
+
+(kuruka_plot <- ggplot(kuruka_features, aes(xmin = start, xmax = stop, y = 0, fill = blastp, forward = TRUE, label = blastp)) +
+  geom_gene_arrow(arrowhead_height = unit(3, "mm"), arrowhead_width = unit(1, "mm")) +
+  geom_gene_label(align = "centre") +
+  scale_fill_brewer(palette = "Set3") +
+  labs(title = "Kuruka", x = "bp", y = "") +
+  theme_genes() +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()))
+
+ggsave("/Volumes/Storage/kuruka/figures/kuruka-sequence.svg", kuruka_plot)
+```
+
+
+Where are the insertions in the D.melanogaster genome?
+```{}
+blastn -query reads_with_kuruka.fasta -subject reads_with_kuruka.fasta -outfmt 6 -out reads_with_kuruka.blast.tsv
+```
+
+1. They are all in different positions, as no flanking region is similar to any of the other 11. Only the TE is highly similar among reads (>95%).
+```{r}
+blast_columns <- c(
+  "qseqid",    # Query sequence ID
+  "sseqid",    # Subject (database match) sequence ID
+  "pident",    # Percentage of identical matches
+  "length",    # Alignment length
+  "mismatch",  # Number of mismatches
+  "gapopen",   # Number of gap openings
+  "qstart",    # Start of alignment in query
+  "qend",      # End of alignment in query
+  "sstart",    # Start of alignment in subject
+  "send",      # End of alignment in subject
+  "evalue",    # Expect value (e-value)
+  "bitscore"   # Bit score
+)
+
+blast <- read_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.blast.tsv", col_names = blast_columns)
+
+blast_plot <- blast %>% filter(qseqid != sseqid | pident == 100) %>% mutate(qseqid_short = substr(qseqid, 1, 2), sseqid_short = substr(sseqid, 1, 2))
+
+ggplot(blast_plot, aes(x = qstart, xend = qend, y = sseqid_short, yend = sseqid_short, color = pident)) +
+  geom_segment(size = 2) +  
+  scale_color_gradient(low = "orange", high = "purple") +  # Use a color gradient
+  facet_grid(. ~ qseqid_short, scale = "free_x") +
+  labs(x = "Query position", y = "", color = "Sequence identity") +
+  theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, hjust = 1, size = 4))
+```
+
+2. They are scattered among the main chromosomes
+```{r}
+fai <- read_tsv("/Volumes/Storage/kuruka/ref/GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.fna.fai", col_names = c("qseqid", "len"))
+
+(blast2reference <- read_tsv("/Volumes/Storage/kuruka/minimap-derecta/reads_with_kuruka.blast2reference.tsv", col_names = blast_columns) %>% mutate(sseqid_short = substr(sseqid, 1, 2)) %>% group_by(sseqid_short) %>% filter(length == max(length)) %>% inner_join(fai, by = "qseqid") %>% select(-mismatch, -gapopen, -sstart, -send, -X3, -X4, -X5, -evalue, -bitscore))
+
+ggplot(blast2reference) +
+  geom_col(aes(x = qstart, y = 0.1), width = 200000, size = 0.1, color = "black", fill = "red") +  # Corrected geom_bar
+  geom_segment(aes(x = qstart, xend = length, y = 0, yend = 0), size = 1.5, color = "grey") +  # Fixed segment
+  scale_x_continuous(breaks = seq(0, max(blast2reference$qend), by = 1e7),  
+                     labels = function(x) paste0(x / 1e6, "m")) +  # Format as "0m", "1m", ...
+  labs(x = "Genomic position", fill = "Read ID") +
+  theme(legend.position = "bottom",
+        axis.text.y = element_blank(),  
+        axis.title.y = element_blank(),  
+        axis.ticks.y = element_blank()) +  
+  facet_wrap(~qseqid, scales = "free_x", nrow = 1) +
+  geom_text_repel(aes(x = qstart, y = 0.1, label = sseqid_short),  
+                  size = 2.8, box.padding = 1, max.overlaps = 18, force = 1)
+```
+
+```{r}
+kuruka_consensus <- readDNAStringSet("/Volumes/Storage/kuruka/ref/kuruka.fasta")
+#seq <- as.character(kuruka_consensus[[1]])
+#seq_vec <- s2c(seq)
+#dotPlot(seq_vec, seq_vec, xlab="Position", ylab="Position", wsize = 100)
+```
+
+

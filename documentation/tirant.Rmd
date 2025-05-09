@@ -1,0 +1,118 @@
+---
+title: "Tirant"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+library(ggrepel)
+theme_set(theme_bw())
+```
+
+RepeatMask 334 drosophilids genomes with the sequences of the known 11 invaders in D. melanogaster plus Kuruka and Shellder. Tirant, Shellder and Kuruka have envelope proteins.
+```{}
+for i in /mnt/data2/riccardo/drosophilids-assemblies/286-assemblies/*fasta; do /home/riccardo/repeatannotation/RepeatMasker/RepeatMasker -pa 30 -no_is -s -nolow -dir RM-out/ -lib ref/new-TEs-v5.fasta $i;done
+
+for f in /Volumes/Storage/kuruka/RM-285/13invaders-334/*ori.out ; do python RM-defragment.py "$f" "${f/.ori.out/.defrag.out}" --d 200; done
+```
+
+```{r}
+columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
+
+folder_path <- "/Volumes/Storage/kuruka/RM-285/13invaders-334/"
+file_list <- list.files(path = folder_path, pattern = "\\.defrag\\.out$", full.names = TRUE)
+
+read_and_process <- function(file) {
+  df <- read_table(file, col_names = columns_RM) %>%
+    mutate(sample = basename(file))  # Add sample column with filename
+  return(df)
+}
+
+all_13_invaders <- map_dfr(file_list, read_and_process) %>% mutate(name = gsub(".fasta.defrag.out", "", sample))
+write_tsv(all_13_invaders, "/Volumes/Storage/kuruka/RM-285/13invaders-334/all_13_invaders.tsv")
+```
+
+```{r}
+all_13_invaders <- read_tsv("/Volumes/Storage/kuruka/RM-285/13invaders-334/all_13_invaders.tsv") %>% mutate(match_len = qend - qstart)
+te_meta <- read_tsv("/Volumes/Storage/kuruka/metadata/new-TEs-v5.tsv")
+biogeo <- read_tsv("/Volumes/Storage/kuruka/metadata/metadata-biogeography-334.tsv")
+```
+
+```{r}
+(plottable <- all_13_invaders %>%
+  group_by(name, te) %>%
+  filter(match_len < 9000) %>%
+  filter(match_len == max(match_len)) %>%
+  filter(pdiv == min(pdiv)) %>%
+  inner_join(biogeo, by = "name") %>%
+  inner_join(te_meta, by = "te") %>%
+  arrange(te, desc(match_len)) %>%
+  ungroup())
+
+# Create a data frame for the custom label
+#label_data <- data.frame(x = 8650, y = 55, label = "Length of Kuruka consensus", realm1 = NA)
+
+# Plot
+ggplot(plottable, aes(x = match_len, y = 100 - pdiv, fill = realm1)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.5, color = "black") +  # Shape 21 = dots with border
+  scale_fill_manual(values = c("red", "violet", "orange", "lightblue", "darkgreen", "purple", "blue")) + 
+  #geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  #geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Alignment length (bp)", y = "Sequence identity (%)", fill = "Realm") + 
+  #geom_text_repel(data = plottable %>% filter(match_len > 6500 | (pdiv < 5 & match_len > 1000)), 
+  #                aes(label = name), size = 2.8, box.padding = 0.4, max.overlaps = 18) +
+  facet_wrap(. ~ te, ncol = 3) #+
+  #scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833))  # Set custom x-axis breaks
+```
+
+```{r}
+(full_length <- all_13_invaders %>% inner_join(biogeo, by = "name") %>% select(-class) %>% inner_join(te_meta, by = "te") %>% mutate(match_prop = match_len/te_len) %>% filter(match_prop >= 0.8, match_prop <= 1.2, pdiv <= 20))
+
+(per_species <- full_length %>% group_by(te, class, name) %>% summarise(copynumber = n()))
+per_species_order <- per_species %>% arrange(class) %>% select(te) %>% distinct() %>% pull
+per_species$te <- factor(per_species$te, levels = per_species_order)
+
+ggplot(per_species, aes(x = copynumber)) +
+  geom_histogram(binwidth = 1) +
+  facet_wrap(~te, ncol = 1, strip.position = "right") +
+  theme(strip.placement = "outside", strip.background = element_rect(fill = "grey90")) +
+  ylab("species count")
+```
+
+```{r}
+single_species_plot <- function(data, species_name, vline) {
+  
+  single_s <- data %>% filter(name == species_name) %>% arrange(pdiv)
+
+(insertions <- ggplot(single_s, aes(x = match_len, y = 100 - pdiv, fill = name)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.3, color = "black") +
+  scale_fill_viridis_d(option = "plasma", na.translate = FALSE) +
+  geom_vline(xintercept = vline, linetype = "longdash") +  # Vertical line at 8833
+  #geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +
+  labs(x = "Match length (bp)", y = "Sequence identity (%)", fill = "Genome assembly", title = species_name) +
+  ylim(60, 100) +
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), vline)) +  # Set custom x-axis breaks
+  theme(legend.position = "bottom"))
+}
+
+tirant <- all_13_invaders %>% filter(te == "Tirant")
+
+(species_with_tirant <- full_length %>% filter(te == "Tirant") %>% dplyr::select(name) %>% distinct() %>% pull)
+
+for (spec in species_with_tirant) {
+  ssp <- single_species_plot(tirant, spec, 8526)
+  print(ssp)
+}
+```

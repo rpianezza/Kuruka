@@ -1,0 +1,222 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+suppressPackageStartupMessages(library(ggrepel))
+theme_set(theme_bw())
+```
+
+```{}
+for i in assemblies-derecta/*.fna; do RepeatMasker -pa 20 -no_is -s -nolow -dir RM-kuruka2erecta -lib ../ref/kuruka.fasta $i;done
+```
+
+```{r}
+columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
+
+folder_path <- "/Volumes/Storage/kuruka/derecta/RM-kuruka2erecta/"
+file_list <- list.files(path = folder_path, pattern = "\\.defrag\\.out$", full.names = TRUE)
+
+read_and_process <- function(file) {
+  df <- read_table(file, col_names = columns_RM) %>%
+    mutate(sample = basename(file))  # Add sample column with filename
+  return(df)
+}
+
+(combined_data <- map_dfr(file_list, read_and_process) %>% mutate(match_len = qend - qstart) %>%
+  mutate(name = case_when(sample == "GCA_018904525.1_ASM1890452v1_genomic.fna.defrag.out" ~ "GCA_018904525.1", sample == "GCF_000005135.1_dere_caf1_genomic.fna.defrag.out" ~ "GCF_000005135.1", sample == "GCF_003286155.1_DereRS2_genomic.fna.defrag.out" ~ "GCF_003286155.1", sample == "derecta.contigs.fna.defrag.out" ~ "Sarah's")))
+```
+
+```{r}
+# Create a data frame for the custom label
+label_data <- data.frame(x = 8650, y = 20, label = "Length of Kuruka consensus", name = NA)
+
+(insertions_dere <- ggplot(combined_data, aes(x = match_len, y = 100 - pdiv, fill = name)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.3, color = "black") +  # Shape 21 = dots with border
+  scale_fill_viridis_d(option = "plasma", na.translate = FALSE) +
+  geom_text_repel(data = combined_data %>% filter(match_len > 8000), 
+                  aes(label = name), size = 3, box.padding = 0.8, max.overlaps = 15) + 
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Match length (bp)", y = "Sequence identity (%)", fill = "Genome assembly") + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833), limits = c(0, 8833)) +  # Set custom x-axis breaks
+  theme(legend.position = "bottom"))
+
+ggsave("/Volumes/Storage/kuruka/figures/exploratory/derecta-insertions.png", insertions_dere, dpi = 500)
+```
+
+```{r}
+samples_list <- merged %>% select(sample) %>% distinct() %>% pull
+
+for (s in samples_list) {
+  sample <- merged %>% filter(sample == s, pdiv < 2, match_len > 6000) %>% select(contig, qstart, qend, name, strand) %>% mutate(qstart = ifelse(qstart-2000>0, qstart-2000, 0), qend = qend+2000)
+  path <- paste0("/Volumes/Storage/kuruka/derecta/insertions-derecta/", s, ".bed")
+  write_tsv(sample, path, col_names = FALSE)
+}
+```
+
+```{}
+cd /Volumes/Storage/kuruka/RM-derecta/insertions-derecta
+bedtools getfasta -fi ../assemblies-derecta/GCA_018904525.1_ASM1890452v1_genomic.fna -fo GCA_018904525.1_ASM1890452v1_genomic.fna.ori.out.fasta -bed GCA_018904525.1_ASM1890452v1_genomic.fna.ori.out.bed -s
+bedtools getfasta -fi ../assemblies-derecta/GCF_003286155.1_DereRS2_genomic.fna -fo GCF_003286155.1_DereRS2_genomic.fna.ori.out.fasta -bed GCF_003286155.1_DereRS2_genomic.fna.ori.out.bed -s
+bedtools getfasta -fi ../assemblies-derecta/GCF_000005135.1_dere_caf1_genomic.fna -fo GCF_000005135.1_dere_caf1_genomic.fna.ori.out.fasta -bed GCF_000005135.1_dere_caf1_genomic.fna.ori.out.bed -s
+bedtools getfasta -fi ../assemblies-derecta/derecta.contigs.fna -fo derecta.contigs.fna.ori.out.fasta -bed derecta.contigs.fna.ori.out.bed -s
+cat *fasta > insertions-kuruka-derecta.fna
+```
+
+The insertions are at the same site. The flanking regions are >99.9% in the 4 assemblies!
+
+
+Short reads
+```{r}
+# Define the folder containing the copynumber files
+folder_path <- "/Volumes/Storage/kuruka/derecta/deviaTE/"
+
+columns <- c("TEfam", "sample_id", "pos", "refbase", "A", "C", "G", "T", "cov", "phys_cov", "hq_cov", "snp", "refsnp", "int_del", "int_del_freq", "trunc_left", "trunc_right", "ins", "delet", "annotation")
+
+# List all *.ori.out files in the folder
+file_list <- list.files(path = folder_path, pattern = "\\.Kuruka$", full.names = TRUE)
+
+# Iterate over each file in oriout_folder
+all_cn_data <- tibble()
+
+for (cn_file in file_list) {
+  cn <- read_table(cn_file, col_names = columns, skip = 3) %>% mutate(sample = cn_file) %>% filter(pos < 8830 | pos > 0) %>% group_by(sample) %>% summarise(copynumber = mean(hq_cov), more_than1 = sum(hq_cov >= 0.1)) %>% mutate(presence = ifelse(more_than1 > 7005, "present", "absent"))
+  all_cn_data <- bind_rows(all_cn_data, cn)
+  }
+
+print(all_cn_data)
+write_tsv(all_cn_data, "/Volumes/Storage/kuruka/derecta/deviaTE/kuruka-copynumber-nolowcomplexity.tsv")
+```
+
+```{r}
+merged %>% filter(sample == "GCF_003286155.1_DereRS2_genomic.fna.ori.out", pdiv < 5)
+```
+
+```{}
+gunzip *gz
+for fq in *.fastq; do novoalign -d ../ref/GCF_003286155.1_DereRS2_genomic.nix -f "$fq" -o SAM -c 20 > "${fq%.fastq}.sam"; done
+for file in *.sam; do samtools view -S -b "$file" | samtools sort -o "${file%.sam}_sorted.bam"; done
+for file in *.bam; do                                                                          
+ samtools view -b -q 10 "$file" > "${file%.bam}_q10.bam"         
+done
+for file in *.bam; do samtools index "$file"; done
+
+for file in *.bam; do                                                                    
+ samtools depth -r NW_020825209.1:15516978-15725638 "$file" > "${file%.bam}.coverage.txt"
+done
+```
+
+```{r}
+columns_depth <- c("contig", "pos", "depth")
+
+folder_path <- "/Volumes/Storage/kuruka/derecta/smallRNA/"
+file_list <- list.files(path = folder_path, pattern = "\\.txt$", full.names = TRUE)
+
+full_f <- tibble(contig = character(), pos = double(), depth = double())
+
+for (file in file_list) {
+  
+  f <- read_tsv(file, col_names = columns_depth) %>% mutate(sample = file)
+  full_f <- bind_rows(full_f, f)
+}
+
+(full_f <- full_f %>% 
+  mutate(
+    quality = ifelse(str_detect(sample, "q10"), 10, 0),  # Assign 10 or 0 based on "q10" in sample name
+    sample = str_replace(sample, "/Volumes/Storage/kuruka/derecta/smallRNA//", ""),  # Remove path
+    sample = str_replace_all(sample, "_sorted_q10\\.coverage\\.txt|_sorted\\.coverage\\.txt", ""),  # Remove file suffixes
+    kuruka = pos >= 15616978 & pos <= 15625638,
+    tot_piRNAs = case_when(sample == "SRR22905024" ~ 16981984, sample == "SRR22905025" ~ 17149894, sample == "SRR22905026" ~ 19803832, sample == "SRR22904962" ~ 8346202, sample == "SRR22904964" ~ 11457317, sample == "SRR22904965" ~ 13810457, sample == "SRR22904966" ~ 12856496, sample == "SRR22904967" ~ 32706477, sample == "SRR22904968" ~ 13987274, sample == "SRR22904969" ~ 11672717),
+    tissue = case_when(sample == "SRR22905024" ~ "Replicate", sample == "SRR22905025" ~ "Replicate", sample == "SRR22905026" ~ "Replicate", sample == "SRR22904962" ~ "Embryo", sample == "SRR22904964" ~ "Ovary", sample == "SRR22904965" ~ "Ovary", sample == "SRR22904966" ~ "Ovary", sample == "SRR22904967" ~ "Whole fly", sample == "SRR22904968" ~ "Whole fly", sample == "SRR22904969" ~ "Whole fly"),
+    pM_piRNAs = depth / (tot_piRNAs/1000000)))
+
+full_f_10 <- full_f %>% filter(quality == 10)
+full_f_0 <- full_f %>% filter(quality == 0)
+
+zoom_around_kuruka_10 <- full_f_10 %>% filter(pos >= 15516978, pos <= 15725638)
+zoom_kuruka_10 <- full_f_10 %>% filter(kuruka == TRUE)
+zoom_around_kuruka_0 <- full_f_0 %>% filter(pos >= 15516978, pos <= 15725638)
+zoom_kuruka_0 <- full_f_0 %>% filter(kuruka == TRUE)
+```
+
+```{r}
+ggplot(full_f_10, aes(x = pos, y = pM_piRNAs, color = kuruka)) + 
+  geom_line() +
+  facet_grid(sample ~ .) +  # Facet by sample in rows
+  scale_color_manual(values = c("darkgrey", "red")) +
+  labs(y = "piRNAs (pM piRNAs)", title = "Mapping Quality > 10", color = "Kuruka")
+
+ggplot(zoom_around_kuruka_10, aes(x = pos, y = pM_piRNAs, color = kuruka)) +   
+  geom_line() +   
+  facet_grid(sample ~ .) +  # Facet in rows instead of columns
+  scale_color_manual(values = c("darkgrey", "red")) +  # Custom colors for discrete quality
+  labs(alpha = "Quality", y = "piRNAs (pM piRNAs)", title = "Mapping quality > 10") # Update legend title
+
+ggplot(zoom_kuruka_10, aes(x = pos, y = pM_piRNAs, fill = kuruka)) +   
+  geom_bar(stat = "identity") +   
+  facet_grid(sample ~ .) +  # Facet in rows instead of columns
+  scale_fill_manual(values = c("red")) +  # Custom colors for discrete quality
+  labs(alpha = "Quality", y = "piRNAs (pM piRNAs)", title = "Mapping quality > 10") # Update legend title
+```
+
+
+
+```{r}
+ggplot(full_f_0, aes(x = pos, y = pM_piRNAs, color = kuruka)) +   
+  geom_line() +
+  facet_grid(sample ~ .) +  # Facet in rows instead of columns
+  scale_color_manual(values = c("darkgrey", "red")) +  # Custom colors for discrete quality
+  labs(alpha = "Quality", y = "piRNAs (pM piRNAs)", title = "All reads")  # Update legend title
+
+ggplot(zoom_around_kuruka_0, aes(x = pos, y = pM_piRNAs, color = kuruka)) +   
+  geom_line() +   
+  facet_grid(sample ~ .) +  # Facet in rows instead of columns
+  scale_color_manual(values = c("darkgrey", "red")) +  # Custom colors for discrete quality
+  labs(alpha = "Quality", y = "piRNAs (pM piRNAs)", title = "All reads") # Update legend title
+
+ggplot(zoom_kuruka_0, aes(x = pos, y = pM_piRNAs, fill = kuruka)) +   
+  geom_bar(stat = "identity") +   
+  facet_grid(sample ~ .) +  # Facet in rows instead of columns
+  scale_fill_manual(values = c("red")) +  # Custom colors for discrete quality
+  labs(alpha = "Quality", y = "piRNAs (pM piRNAs)", title = "All reads") # Update legend title
+```
+
+On which chromosome are the insertions of D.erecta and D.bocqueti?
+```{r}
+dmel <- read_tsv("/Volumes/Storage/kuruka/derecta/chromosome/dmel-busco.tsv", col_names = c("busco", "location")) %>% mutate(species = "D.melanogaster", location = gsub(">", "", location)) %>% separate(location, into = c("chromosome", "coordinates"), sep = ":")
+
+dere <- read_tsv("/Volumes/Storage/kuruka/derecta/chromosome/dere-busco.tsv", col_names = c("busco", "location")) %>% mutate(species = "D.erecta", location = gsub(">", "", location)) %>% separate(location, into = c("chromosome", "coordinates"), sep = ":")
+
+dboc <- read_tsv("/Volumes/Storage/kuruka/derecta/chromosome/dboc-busco.tsv", col_names = c("busco", "location")) %>% mutate(species = "D.bocqueti", location = gsub(">", "", location)) %>% separate(location, into = c("chromosome", "coordinates"), sep = ":")
+
+busco_data <- bind_rows(dmel, dere, dboc)
+
+wide <- busco_data %>% pivot_wider(busco, names_from = species, values_from = chromosome) %>% na.omit()
+
+(dere_link <- wide %>% group_by(`D.melanogaster`, `D.erecta`) %>% summarise(n = n()) %>% filter(`D.erecta` == "JAEIGZ010000432.1"))
+(dboc_link <- wide %>% group_by(`D.melanogaster`, `D.bocqueti`) %>% summarise(n = n()) %>% filter(`D.bocqueti` == "JAECXF010000023.1"))
+```
+
+The chromosome where the insertion of Kuruka is correspond to:
+D.erecta = JAEIGZ010000432.1 = 11810425 bp = X (D. melanogaster)
+D.bocqueti = JAECXF010000023.1 = 199710 bp = 2R (D. melanogaster)
+
+
+
+
+

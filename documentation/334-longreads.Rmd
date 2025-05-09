@@ -1,0 +1,186 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+library(ggrepel)
+theme_set(theme_bw())
+```
+
+```{}
+for i in /mnt/data2/riccardo/dmel-longreads/*.fasta; do /home/riccardo/repeatannotation/RepeatMasker/RepeatMasker -pa 20 -no_is -s -nolow -dir . -lib ../ref/kuruka.fasta $i;done
+
+for f in /Volumes/Storage/kuruka/derecta/raw-reads/RM-out/*.ori.out; do python RM-defragment.py "$f" "${f/.ori.out/.defrag.out}" --d 200; done
+```
+
+```{r}
+columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
+
+folder_path <- "/Volumes/Storage/kuruka/RM-285/"
+file_list <- list.files(path = folder_path, pattern = "\\.defrag\\.out$", full.names = TRUE)
+
+read_and_process <- function(file) {
+  df <- read_table(file, col_names = columns_RM) %>%
+    mutate(sample = basename(file))  # Add sample column with filename
+  return(df)
+}
+
+combined_data <- map_dfr(file_list, read_and_process) %>% mutate(name = gsub(".fasta.defrag.out", "", sample)) %>%
+  mutate(match_len = qend - qstart)
+#write_tsv(combined_data, "/Volumes/EXT-RICCARDO/presentations/kuruka-RM.tsv")
+```
+
+```{r}
+biogeo <- read_tsv("/Volumes/Storage/kuruka/metadata/metadata-biogeography-334.tsv")
+
+(plottable <- combined_data %>%
+  mutate(match_len = qend - qstart) %>%
+  group_by(name) %>%
+  filter(match_len < 9000) %>%
+  filter(match_len == max(match_len)) %>%
+  filter(pdiv == min(pdiv)) %>%
+  inner_join(biogeo, by = "name") %>%
+  arrange(desc(match_len)) %>%
+  ungroup() %>%
+  mutate(region_kuruka = case_when(realm1 == "Afrotropic" ~ "Afrotropic", is.na(realm1) ~ "Other", TRUE ~ "Other")))
+
+# Create a data frame for the custom label
+label_data <- data.frame(x = 8650, y = 55, label = "Length of Kuruka consensus", region_kuruka = NA)
+
+# Plot
+(origin <- ggplot(plottable, aes(x = match_len, y = 100 - pdiv, fill = region_kuruka)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.5, color = "black") +  # Shape 21 = dots with border
+  scale_fill_manual(values = c("red", "grey")) + 
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Alignment length (bp)", y = "Sequence identity (%)", fill = "Species' range") + 
+  geom_text_repel(data = plottable %>% filter(match_len > 6500 | (pdiv < 5 & match_len > 1000)), 
+                  aes(label = name), size = 2.8, box.padding = 0.4, max.overlaps = 18) + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833)))  # Set custom x-axis breaks
+
+ggsave("/Volumes/Storage/kuruka/figures/pubready/Fig.3-Origin/334.png", origin, dpi = 600)
+```
+
+
+```{r}
+single_species_plot <- function(species_name) {
+  
+  single_s <- combined_data %>% filter(name == species_name) %>% arrange(pdiv)
+
+label_data <- data.frame(x = 8650, y = 20, label = "Length of Kuruka consensus", name = NA)
+
+(insertions <- ggplot(single_s, aes(x = match_len, y = 100 - pdiv, fill = name)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.3, color = "black") +
+  scale_fill_viridis_d(option = "plasma", na.translate = FALSE) +
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +
+  labs(x = "Match length (bp)", y = "Sequence identity (%)", fill = "Genome assembly", title = species_name) +
+  ylim(60, 100) +
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833)) +  # Set custom x-axis breaks
+  theme(legend.position = "bottom"))
+}
+
+species_with_kuruka <- c("D.erecta", "D.bocqueti", "D.aff.chauvacae", "D.teissieri.273.3", "D.teissieri.CT02", "D.santomea", "D.yakuba", "D.mauritiana.r32", "D.orena", "D.ercepeae", "D.merina")
+
+for (spec in species_with_kuruka) {
+  ssp <- single_species_plot(spec)
+  print(ssp)
+}
+```
+
+```{r}
+RM2bed <- function(species_name, pdiv_input, length, add_flanking) {
+  
+  path_fai <- paste0("/Volumes/Storage/data/drosophilids-assemblies/334/", species_name, ".fasta.fai")
+  fai <- read_tsv(path_fai, col_names = c("contig", "contig_len", "x", "y", "z")) %>% select(contig, contig_len)
+  
+  single_s <- combined_data %>% filter(name == species_name) %>% arrange(pdiv) %>% mutate(sample = gsub(".defrag.out", "", sample), strand = ifelse(strand == "C", "-", "+")) %>% inner_join(fai, by = "contig")
+  
+  bed <- single_s %>% filter(pdiv < pdiv_input, match_len >= length) %>% mutate(qstart = ifelse(qstart > add_flanking, qstart - add_flanking, 0), qend = ifelse(qend + add_flanking < contig_len, qend + add_flanking, contig_len)) %>% select(contig, qstart, qend, sample, pdiv, strand) 
+  
+  path <- paste0("/Volumes/Storage/kuruka/tree-kuruka/bed/", species_name, ".fasta.bed")
+  write_tsv(bed, path, col_names = FALSE)
+}
+
+for (spec in species_with_kuruka) {
+  RM2bed(spec, 20, 6500, 2000)
+}
+```
+
+```{bash}
+BED_DIR="/Volumes/Storage/kuruka/tree-kuruka/bed"
+FASTA_DIR="/Volumes/Storage/data/drosophilids-assemblies/334"
+RENAMED_FASTA_DIR="/Volumes/Storage/kuruka/tree-kuruka/bed/renamed-fasta"
+OUTPUT_FASTA_DIR="/Volumes/Storage/kuruka/tree-kuruka/fasta"
+RENAME_SCRIPT="/Volumes/Storage/dmel-biogeography/indomalayan-outliers/rename-fasta.py"
+
+for bed in "$BED_DIR"/*.bed; do
+    fasta="$FASTA_DIR/$(basename "$bed" | sed 's/\.[^.]*\.bed$/.fasta/')"
+    output_fasta="$OUTPUT_FASTA_DIR/$(basename "$bed" .bed)"
+    bedtools getfasta -fi "$fasta" -bed "$bed" -s -name -fo "$output_fasta"
+done
+```
+
+```{}
+cd /Volumes/Storage/kuruka/tree-kuruka/fasta
+cat *fasta > kuruka-all.fna
+gt suffixerator -db kuruka-all.fna -indexname kuruka-all.index -tis -suf -lcp -des -ssp -sds -dna
+gt ltrharvest -index kuruka-all.index -out kuruka-all-2LTRs.fna
+samtools faidx kuruka-all-2LTRs.fna
+mafft --thread 18 kuruka-all-2LTRs.fna > kuruka-all-2LTRs.MSA
+seqret -auto -sequence kuruka-all-2LTRs.MSA -outseq kuruka-all-2LTRs.nexus -osformat nexus
+```
+
+D.merina.fasta::JAWNPH010000062.1:368925-379635(+) -> messy sequence to manually remove
+BLASTn and manually remove sequences matching less than 60% of the sequence (they would mess up the phylogeny)
+
+```{r}
+phylogenetic_order <- c("80d35ee7-2d67-42b5-b820-c368cdc3275f:7-8702(-)", "2dd76f6c-12cd-418a-a902-ea8ee079a185:2227-11013(-)", "d94cf95b-c0a9-4f45-aca6-f19ad0f90738:4459-13319(+)", "01d9a175-2765-4d9c-984f-4f1c1486d055:3-8788(+)", "27e9db99-9b8f-4760-a8fc-b997844d014c:17875-26717(-)", "3327a95b-1868-4e94-9e46-d6f5cda49636:22376-31189(-)", "5257b8f0-f4c8-4b07-b303-d009b8497439:912-9261(+)", "c2e40ece-673e-4461-a77a-da185b7a3006:6345-15580(-)", "15840faa-b980-4067-b884-a9448054cfa5:4430-12977(-)", "d5667f51-91f8-4fcd-8a2b-5175a62fafce:566-9033(+)", "8f0d4808-721b-4d87-90a4-88b6108e758e:19905-28379(+)", "5b9b2edc-7750-4c42-bfaf-38d596d81127:17657-26131(-)", "JAECXF010000023.1:95529-103026(-)", "NW_020825209.1:15616978-15625638()", "JAEIGO010000916.1:14708533-14717367(-)", "JAEIGO010000394.1:124852-133216(-)", "JAEIGO010000089.1:549077-557943(-)", "JAEIGO010000862.1:363024-371734(-)")
+
+msa <- readDNAMultipleAlignment("/Volumes/Storage/kuruka/tree-kuruka/fasta/kuruka-all-2LTRs.MSA", format = "fasta")
+msa_matrix <- as.matrix(msa)
+df <- as.data.frame(msa_matrix)
+
+base_colors <- c("A" = "#4DAF4A",  # Green
+                 "T" = "#E41A1C",  # Red
+                 "C" = "#377EB8",  # Blue
+                 "G" = "#984EA3",  # Purple
+                 "-" = "#333333")  # Dark gray for gaps
+
+(df_long <- as_tibble(df) %>%
+  mutate(insertion = rownames(df)) %>%  # Add row names as a new column
+  pivot_longer(cols = -insertion,      # Pivot all columns except 'insertion'
+               names_to = "position", # Column names become 'position'
+               values_to = "base") %>%
+  mutate(position = gsub("V", "", position)) %>% type_convert())#%>%
+  #mutate(insertion = factor(insertion, levels = phylogenetic_order)))
+
+(MSA_plot <- ggplot(df_long, aes(x = position, y = insertion, fill = base)) +
+  geom_tile() +
+  scale_fill_manual(values = base_colors) +
+  labs(x = "Position", y = "Insertion", fill = "Base") +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1),
+    axis.text.y = element_text(size = 8),
+    strip.text.y = element_text(size = 8)  # Smaller facet label text
+  ))
+
+ggsave("/Volumes/Storage/kuruka/figures/MSA-dchau.png", MSA_plot)
+```
+
+
+

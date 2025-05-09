@@ -23,13 +23,15 @@ theme_set(theme_bw())
 
 ```{}
 for i in /mnt/data2/riccardo/dmel-longreads/*.fasta; do /home/riccardo/repeatannotation/RepeatMasker/RepeatMasker -pa 20 -no_is -s -nolow -dir . -lib ../ref/kuruka.fasta $i;done
+
+for f in /Volumes/Storage/kuruka/derecta/raw-reads/RM-out/*.ori.out; do python RM-defragment.py "$f" "${f/.ori.out/.defrag.out}" --d 200; done
 ```
 
 ```{r}
 columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
 
 folder_path <- "/Volumes/Storage/kuruka/RM-285/"
-file_list <- list.files(path = folder_path, pattern = "\\.ori\\.out$", full.names = TRUE)
+file_list <- list.files(path = folder_path, pattern = "\\.defrag\\.out$", full.names = TRUE)
 
 read_and_process <- function(file) {
   df <- read_table(file, col_names = columns_RM) %>%
@@ -37,40 +39,25 @@ read_and_process <- function(file) {
   return(df)
 }
 
-combined_data <- map_dfr(file_list, read_and_process) %>% mutate(name = gsub(".fasta.ori.out", "", sample))
-write_tsv(combined_data, "/Volumes/EXT-RICCARDO/presentations/kuruka-RM.tsv")
+combined_data <- map_dfr(file_list, read_and_process) %>% mutate(name = gsub(".fasta.defrag.out", "", sample))
+#write_tsv(combined_data, "/Volumes/EXT-RICCARDO/presentations/kuruka-RM.tsv")
 ```
 
 ```{r}
-(defragmented <- combined_data %>% select(pdiv, name, contig, qstart, qend, strand, position_in_repeat_begin, position_in_repeat_end, position_in_repeat_left) %>%
-   arrange(name, contig, qstart) %>%
-   mutate(to_merge = ifelse(name == lead(name) & contig == lead(contig) & strand == lead(strand) & qend >= lead(qstart) - 250, TRUE, FALSE), match_len = qend-qstart))
+biogeo <- read_tsv("/Volumes/Storage/kuruka/metadata/metadata-biogeography.tsv")
 
-(merged <- defragmented %>%
-  mutate(
-    qend = ifelse(to_merge, coalesce(lead(qend), qend), qend),  # Avoids NA issues in last row
-    pdiv = ifelse(to_merge, (pdiv/100) * (match_len/(qend-qstart)) + (lead(pdiv)/100) * (lead(match_len)/(qend-qstart)), pdiv),
-    match_len = qend-qstart,
-    pdiv = pdiv * 100) %>%
-  filter(to_merge == TRUE) %>%
-  select(name, contig, qstart, qend, match_len, pdiv, strand))
-```
-
-
-```{r}
-(biogeo <- read_tsv("/Volumes/Storage/kuruka/metadata/metadata-biogeography.tsv"))
-
-(plottable <- merged %>%
+(plottable <- combined_data %>%
   mutate(match_len = qend - qstart) %>%
   group_by(name) %>%
-  filter(pdiv == min(pdiv)) %>%
+  filter(match_len < 9000) %>%
   filter(match_len == max(match_len)) %>%
+  filter(pdiv == min(pdiv)) %>%
   inner_join(biogeo, by = "name") %>%
   arrange(desc(match_len)) %>%
   ungroup())
 
 # Create a data frame for the custom label
-label_data <- data.frame(x = 8650, y = 65, label = "Length of Kuruka consensus", realm1 = NA)
+label_data <- data.frame(x = 8650, y = 55, label = "Length of Kuruka consensus", realm1 = NA)
 
 # Plot
 ggplot(plottable, aes(x = match_len, y = 100 - pdiv, fill = realm1)) + 
@@ -78,8 +65,47 @@ ggplot(plottable, aes(x = match_len, y = 100 - pdiv, fill = realm1)) +
   scale_fill_manual(values = c("red", "violet", "orange", "lightblue", "darkgreen", "purple", "blue")) + 
   geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
   geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
-  labs(x = "Match length (bp)", y = "Sequence similarity (%)", fill = "Realm") + 
-  geom_text_repel(data = plottable %>% filter(match_len > 5000 | (pdiv < 10 & match_len > 1000)), 
-                  aes(label = name), size = 2.8, box.padding = 0.6, max.overlaps = 18) + 
-  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833), limits = c(0, 8833))  # Set custom x-axis breaks
+  labs(x = "Alignment length (bp)", y = "Sequence identity (%)", fill = "Realm") + 
+  geom_text_repel(data = plottable %>% filter(match_len > 6500 | (pdiv < 5 & match_len > 1000)), 
+                  aes(label = name), size = 2.8, box.padding = 0.4, max.overlaps = 18) + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833))  # Set custom x-axis breaks
+```
+
+```{r}
+(bocqueti <- combined_data  %>% filter(name == "D.bocqueti") %>% arrange(pdiv) %>%
+  mutate(match_len = qend - qstart))
+
+label_data <- data.frame(x = 8650, y = 20, label = "Length of Kuruka consensus", name = NA)
+
+(insertions_dere <- ggplot(bocqueti, aes(x = match_len, y = 100 - pdiv, fill = name)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.3, color = "black") +  # Shape 21 = dots with border
+  scale_fill_viridis_d(option = "plasma", na.translate = FALSE) +
+  #geom_text_repel(data = bocqueti %>% filter(match_len > 7000), 
+  #                aes(label = name), size = 3, box.padding = 0.8, max.overlaps = 15) + 
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Match length (bp)", y = "Sequence identity (%)", fill = "Genome assembly", title = "Kuruka - D.bocqueti") + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833), limits = c(0, 8833)) +  # Set custom x-axis breaks
+  theme(legend.position = "bottom"))
+
+bocqueti %>% filter(pdiv < 2) %>% select(contig, qstart, qend, te, pdiv, strand) %>% write_tsv("/Volumes/Storage/kuruka/derecta/dbocqueti-insertion2k.bed", col_names = FALSE)
+```
+```{r}
+(chauvachae <- combined_data  %>% filter(name == "D.aff.chauvacae") %>% arrange(pdiv) %>%
+  mutate(match_len = qend - qstart) %>% arrange(desc(match_len)))
+
+label_data <- data.frame(x = 8650, y = 20, label = "Length of Kuruka consensus", name = NA)
+
+(insertions_dere <- ggplot(chauvachae, aes(x = match_len, y = 100 - pdiv, fill = name)) + 
+  geom_point(shape = 21, size = 3, alpha = 0.3, color = "black") +  # Shape 21 = dots with border
+  scale_fill_viridis_d(option = "plasma", na.translate = FALSE) +
+  #geom_text_repel(data = bocqueti %>% filter(match_len > 7000), 
+  #                aes(label = name), size = 3, box.padding = 0.8, max.overlaps = 15) + 
+  geom_vline(xintercept = 8833, linetype = "longdash") +  # Vertical line at 8833
+  geom_text(data = label_data, aes(x = x, y = y, label = label), angle = 90, hjust = 0, size = 3.5) +  # Custom label
+  labs(x = "Match length (bp)", y = "Sequence identity (%)", fill = "Genome assembly", title = "Kuruka - D.aff.chauvacae") + 
+  scale_x_continuous(breaks = c(seq(0, 8000, by = 1000), 8833)) +  # Set custom x-axis breaks
+  theme(legend.position = "bottom"))
+
+chauvachae %>% filter(pdiv < 20) %>% select(contig, qstart, qend, te, pdiv, strand) %>% write_tsv("/Volumes/Storage/kuruka/derecta/dchauvachae-insertions.bed", col_names = FALSE)
 ```

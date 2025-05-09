@@ -1,0 +1,335 @@
+assembly	name	genus	species	subspecies	species_group	species_subgroup	group	group2	realm1	realm2	region	notes	source
+GCA_037040105.1	A.albilabris	Amiota	albilabris				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		GBIF
+GCA_037043315.1	A.communis	Amiota	communis				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		GBIF
+GCA_035041805.1	A.mariae	Amiota	mariae				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		GBIF
+GCA_037043295.1	A.minor	Amiota	minor				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		GBIF
+GCA_037043745.1	C.amoena	Chymomyza	amoena				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic	introduced in PA	GBIF
+GCA_035041775.1	C.caudatula	Chymomyza	caudatula				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic	introduced in NE	GBIF
+GCA_018150985.1	C.costata	Chymomyza	costata				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic	introduced in NE	GBIF
+GCA_037043725.1	C.indagator.DO22-1	Cacoxenus	indagator				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035041755.1	C.indagator.DO22-2	Cacoxenus	indagator				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035078785.1	C.kirishimana	Collessia	kirishimana				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_037040085.1	C.kotana	Colocasiomyia	kotana				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035046065.1	C.procnemis	Chymomyza	procnemis				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic	introduced in PA	https://doi.org/10.5169/seals-402554
+GCA_035046005.1	D.acutilabella	Drosophila	acutilabella			cardini	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		GBIF
+GCA_018903765.1	D.aff.chauvacae	Drosophila	chauvacae		melanogaster		melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_035045985.1	D.affinis	Drosophila	affinis		obscura	affinis	obscura	obscura	Nearctic	Nearctic	Nearctic		GBIF
+GCF_009650485.2	D.albomicans	Drosophila	albomicans						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035045965.1	D.aldrichi	Drosophila	aldrichi		repleta	mulleri	virilis-repleta	virilis-repleta	Australasian	Australasian	EastAsia-Oceania	Introduced in NE	GBIF
+GCA_035041765.1	D.algonquin	Drosophila	algonquin		obscura	affinis	obscura	obscura	Nearctic	Nearctic	Nearctic		GBIF
+GCA_018150905.1	D.ambigua	Drosophila	ambigua		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		GBIF
+GCA_018152915.1	D.americana	Drosophila	americana		virilis	americana	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		GBIF
+GCA_019972375.1	D.americana.texana	Drosophila	americana	texana					Nearctic	Nearctic	Nearctic		GBIF
+GCA_018148915.1	D.ananassae	Drosophila	ananassae		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	circumtropical	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035045945.1	D.anceps	Drosophila	anceps		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		GBIF
+GCA_035046425.1	D.anomalata	Drosophila	anomalata		melanogaster	ananassae	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_035041615.1	D.anomalipes	Drosophila	anomalipes		anomalipes		hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035045905.1	D.anomelani	Drosophila	anomelani		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018151165.1	D.arawakana	Drosophila	arawakana		cardini	dunni	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		GBIF
+GCF_001654025.1	D.arizonae	Drosophila	arizonae						Nearctic	Nearctic	Nearctic		GBIF
+GCA_008042795.1	D.asahinai	Drosophila	asahinai						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_008121215.1	D.athabasca	Drosophila	athabasca						Nearctic	Nearctic	Nearctic		GBIF
+GCA_035045925.1	D.atripex	Drosophila	atripex		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035041605.1	D.atroscutellata	Drosophila	atroscutellata				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035045865.1	D.austrosaltans	Drosophila	austrosaltans		saltans	saltans	saltans	saltans	Neotropic	Neotropic	Neotropic		GBIF
+GCA_005876895.1	D.azteca	Drosophila	azteca						Nearctic	Nearctic	Nearctic		GBIF
+GCA_035041595.1	D.basisetae	Drosophila	basisetae		grimshawi	punalua	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035046375.1	D.biarmipes.09	Drosophila	biarmipes		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018148935.1	D.biarmipes.10	Drosophila	biarmipes		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_009664405.1	D.bifasciata	Drosophila	bifasciata						Palearctic	Palearctic	Palearctic		GBIF
+GCA_018153845.1	D.bipectinata	Drosophila	bipectinata		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035046345.1	D.birchii	Drosophila	birchii		melanogaster	montium	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_008042715.1	D.bocki	Drosophila	bocki						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018151655.1	D.bocqueti	Drosophila	bocqueti		melanogaster	montium	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_035045885.1	D.borealis	Drosophila	borealis		virilis		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035046265.1	D.bunnanda	Drosophila	bunnanda		melanogaster	montium	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCF_011750605.1	D.busckii	Drosophila	busckii						Nearctic	Nearctic	Nearctic	cosmopolitan	GBIF
+GCA_035045845.1	D.buzzatii	Drosophila	buzzatii		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018903735.1	D.cardini	Drosophila	cardini		cardini	cardini	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018152295.1	D.carrolli	Drosophila	carrolli		melanogaster	rhopaloa	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035041535.1	D.cognata	Drosophila	cognata		antopocerus	diamphidiopoda	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035041545.1	D.colorata	Drosophila	colorata		melanica		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		GBIF
+GCA_035041375.1	D.conformis	Drosophila	conformis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042505.1	D.cracens	Drosophila	cracens				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035041335.1	D.crucigera	Drosophila	crucigera		grimshawi	crucigera	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042485.1	D.cyrtoloma	Drosophila	cyrtoloma		planitibia	cyrtoloma	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042405.1	D.demipolita	Drosophila	demipolita		haleakalae	anthrax	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_037043665.1	D.differens	Drosophila	differens		planitibia	planitibia	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042365.1	D.dives	Drosophila	dives		haleakalae	polita	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018152125.1	D.dunni	Drosophila	dunni		cardini	dunni	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018152505.1	D.elegans	Drosophila	elegans		melanogaster	elegans	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037075365.1	D.emarginata	Drosophila	emarginata		saltans	elliptica	saltans	saltans	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035042385.1	D.engyochracea	Drosophila	engyochracea		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035045825.1	D.eohydei	Drosophila	eohydei		repleta	hydei	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150345.1	D.equinoxialis	Drosophila	equinoxialis		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150545.1	D.ercepeae	Drosophila	ercepeae		melanogaster	ananassae	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic	Reunion Island	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018904525.1	D.erecta	Drosophila	erecta		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018153835.1	D.eugracilis	Drosophila	eugracilis		melanogaster	eugracilis	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035045725.1	D.ezoana	Drosophila	ezoana		virilis		virilis-repleta	virilis-repleta	Palearctic	Palearctic	Palearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035045575.1	D.falleni	Drosophila	falleni		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018152265.1	D.ficusphila	Drosophila	ficusphila		melanogaster	ficusphila	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_040285245.1	D.flavomontana	Drosophila	flavomontana						Nearctic	Nearctic	Nearctic		GBIF
+GCA_035042425.1	D.flavopinicola	Drosophila	flavopinicola		pinicola		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		GBIF
+GCA_035045625.1	D.formosana	Drosophila	formosana		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035045555.1	D.fulvimacula	Drosophila	fulvimacula		repleta	repleta	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018901825.1	D.funebris	Drosophila	funebris		funebris	macrospina	immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic	holarctic	GBIF
+GCA_035042345.1	D.fungiperda	Drosophila	fungiperda		haleakalae	fungiperda	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018153365.1	D.fuyamai	Drosophila	fuyamai		rhopaloa	fuyamai	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035045545.1	D.gaucha	Drosophila	gaucha		mesophragmatica	mesophragmatica	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035042305.1	D.glabriapex	Drosophila	glabriapex		grimshawi	pilimana	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018153295.1	D.grimshawi	Drosophila	grimshawi		grimshawi	crucigera	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCF_900245975.1	D.guanche	Drosophila	guanche						Palearctic	Palearctic	Palearctic	Canary Islands	GBIF
+GCA_035045485.1	D.gunungcola	Drosophila	gunungcola		melanogaster	elegans	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035045345.1	D.hamatofila	Drosophila	hamatofila		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043685.1	D.hawaiiensis	Drosophila	hawaiiensis		grimshawi	hawaiiensis	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_037043705.1	D.helvetica	Drosophila	helvetica		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035042245.1	D.heteroneura	Drosophila	heteroneura		planitibia	planitibia	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_037043635.1	D.histrio	Drosophila	histrio		histrio		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		GBIF
+GCF_003285905.1	D.hydei	Drosophila	hydei						Palearctic	Palearctic	Palearctic	cosmopolitan	GBIF
+GCA_018153375.1	D.immigrans.12	Drosophila	immigrans		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	Native to IM	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018152165.1	D.immigrans.kari17	Drosophila	immigrans		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	Native to IM	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035042265.1	D.imparisetae	Drosophila	imparisetae				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042225.1	D.incognita	Drosophila	incognita				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042205.1	D.infuscata	Drosophila	infuscata			mimica	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_004354385.2	D.innubila	Drosophila	innubila						Nearctic	Nearctic	Nearctic		GBIF
+GCA_018903935.1	D.insularis	Drosophila	insularis		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_021223825.1	D.ironensis	Drosophila	ironensis						Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_018152175.1	D.jambulina	Drosophila	jambulina		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035042185.1	D.kambysellisi	Drosophila	kambysellisi			conjectura	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_008042475.1	D.kanapiae	Drosophila	kanapiae						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_037075305.1	D.kanekoi	Drosophila	kanekoi		virilis		virilis-repleta	virilis-repleta	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_023558455.1	D.kepulauana	Drosophila	kepulauana						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018152535.1	D.kikkawai	Drosophila	kikkawai		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	circumtropical	
+GCA_030914345.1	D.koepferae	Drosophila	koepferae						Neotropic	Neotropic	Neotropic		GBIF
+GCA_019972355.1	D.kohkoa	Drosophila	kohkoa						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035042145.1	D.kokeensis	Drosophila	kokeensis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042165.1	D.kuntzei	Drosophila	kuntzei		quinaria		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		GBIF
+GCA_018153305.1	D.kurseongensis	Drosophila	kurseongensis		melanogaster	rhopaloa	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_004143845.1	D.lacertosa	Drosophila	lacertosa						Palearctic	Palearctic	Palearctic		GBIF
+GCA_035045355.1	D.lacicola	Drosophila	lacicola		virilis		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_008044355.1	D.lacteicornis	Drosophila	lacteicornis						Palearctic	Palearctic	Palearctic		GBIF
+GCA_035045365.1	D.leonis	Drosophila	leonis		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037075225.1	D.lindae	Dichaetophora	lindae				other drosophilids	other drosophilids	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_018903485.1	D.littoralis	Drosophila	littoralis		virilis		virilis-repleta	virilis-repleta	Palearctic	Palearctic	Palearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035042125.1	D.longiperda	Drosophila	longiperda		haleakalae	cilifemorata	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_008121275.1	D.lowei	Drosophila	lowei						Nearctic	Nearctic	Nearctic		GBIF
+GCA_037075285.1	D.lutescens	Drosophila	lutescens		takahashii	lutescens	melanogaster	melanogaster	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035042075.1	D.macrospina	Drosophila	macrospina		funebris	macrospina	immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		GBIF
+GCA_035042055.1	D.macrothrix	Drosophila	macrothrix		grimshawi	conspicua	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035045305.1	D.maculinotata	Drosophila	maculinotata				immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_018153235.1	D.malerkotliana.malerkotliana	Drosophila	malerkotliana	malerkotliana	melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	subcosmopolitan	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018153275.1	D.malerkotliana.pallens	Drosophila	malerkotliana	pallens	melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	subcosmopolitan	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018904475.1	D.mauritiana.01	Drosophila	mauritiana		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic	Mauritius	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+r32	D.mauritiana.r32	Drosophila	mauritiana		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic	Mauritius	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037075325.1	D.mayaguana	Drosophila	mayaguana		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_008042485.1	D.mayri	Drosophila	mayri						Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_037043625.1	D.melanocephala	Drosophila	melanocephala		planitibia	cyrtoloma	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+CanS	D.melanogaster.CanS	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+GCA_037075385.1	D.melanogaster.ISO1	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+RAL737	D.melanogaster.RAL737	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+TEN015	D.melanogaster.TEN015	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+TOM008	D.melanogaster.TOM008	Drosophila	melanogaster		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+GCA_035042045.1	D.melanosoma.C174	Drosophila	melanosoma		haleakalae	scitula	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035042065.1	D.melanosoma.C177	Drosophila	melanosoma		haleakalae	scitula	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035045175.1	D.mercatorum	Drosophila	mercatorum		repleta	mercatorum	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035045185.1	D.meridiana	Drosophila	meridiana		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035045145.1	D.meridionalis	Drosophila	meridionalis		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047645.1	D.merina	Drosophila	merina		melanogaster	ananassae	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic	Madagascar	GBIF
+GCA_035047625.1	D.mettleri	Drosophila	mettleri		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_004143905.1	D.micromelanica	Drosophila	micromelanica						Nearctic	Nearctic	Nearctic		GBIF
+GCA_037075245.1	D.mimetica	Drosophila	mimetica		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043585.1	D.mimica	Drosophila	mimica			mimica	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044445.1	D.miranda	Drosophila	miranda		obscura	pseudoobscura	obscura	obscura	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018153725.1	D.mojavensis	Drosophila	mojavensis		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047585.1	D.monieri	Drosophila	monieri		melanogaster	ananassae	melanogaster	melanogaster	Pacific Islands	Pacific Islands	EastAsia-Oceania		GBIF
+GCA_035044405.1	D.montana.CO22-7	Drosophila	montana		virilis	montana	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035044425.1	D.montana.MK-O21	Drosophila	montana		virilis	montana	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047565.1	D.mulleri	Drosophila	mulleri		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043605.1	D.multiciliata	Drosophila	multiciliata		haleakalae	anthrax	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018904325.1	D.murphyi	Drosophila	murphyi		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_020883555.1	D.nannoptera	Drosophila	nannoptera						Nearctic	Nearctic	Nearctic		GBIF
+GCF_023558535.2	D.nasuta	Drosophila	nasuta						Afrotropic	Afrotropic	Afrotropic		GBIF
+GCF_001654015.2	D.navojoa	Drosophila	navojoa						Nearctic	Nearctic	Nearctic		GBIF
+GCA_024703675.1	D.nebulosa	Drosophila	nebulosa						Neotropic	Neotropic	Neotropic		GBIF
+GCA_018903615.1	D.neocordata	Drosophila	neocordata		saltans	cordata	saltans	saltans	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043555.1	D.neoperkinsi	Drosophila	neoperkinsi		planitibia	cyrtoloma	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044365.1	D.neotestacea	Drosophila	neotestacea		testacea		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035044385.1	D.neutralis	Drosophila	neutralis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_037075265.1	D.nigricruria	Drosophila	nigricruria		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035044305.1	D.nigritarsus	Drosophila	nigritarsus				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_020829145.1	D.nigrodunni	Drosophila	nigrodunni						Neotropic	Neotropic	Neotropic		GBIF
+GCA_037040065.1	D.nigrovittata	Dettopsomyia	nigrovittata				other drosophilids	other drosophilids	Australasian				
+GCA_035046325.1	D.niveifrons	Drosophila	niveifrons		immigrans	nasuta	immigrans-tripunctata	immigrans-tripunctata	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_030788195.1	D.novomexicana	Drosophila	novamexicana						Nearctic	Nearctic	Nearctic		GBIF
+GCA_035044245.1	D.nr.fundita	Drosophila	nr.fundita				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044325.1	D.nr.medialis.C101	Drosophila	nr.medialis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044225.1	D.nr.medialis.DKP	Drosophila	nr.medialis				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044105.1	D.nr.perissopoda.C167	Drosophila	nr.perissopoda				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044165.1	D.nr.perissopoda.C186	Drosophila	nr.perissopoda				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018151105.1	D.obscura	Drosophila	obscura		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035044125.1	D.ochracea.C070	Drosophila	ochracea		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035044065.1	D.ochracea.DKP	Drosophila	ochracea		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_005876975.1	D.orena	Drosophila	orena						Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018150695.1	D.oshimai	Drosophila	oshimai		melanogaster	suzukii	suzukii	suzukii	Palearctic	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_020883565.1	D.pachea	Drosophila	pachea						Nearctic	Nearctic	Nearctic		GBIF
+GCA_023558445.1	D.pallidifrons	Drosophila	pallidifrons						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_040805635.1	D.pallidosa	Drosophila	pallidosa						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_021223865.1	D.pandora	Drosophila	pandora						Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_018153455.1	D.parabipectinata	Drosophila	parabipectinata		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035044025.1	D.paracracens	Drosophila	paracracens				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035043915.1	D.paramelanica	Drosophila	paramelanica		melanica		virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047545.1	D.paranaensis	Drosophila	paranaensis		repleta	mercatorum	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047505.1	D.parthenogenetica	Drosophila	parthenogenetica		cardini	cardini	immigrans-tripunctata	immigrans-tripunctata	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043875.1	D.paucipuncta	Drosophila	paucipuncta		grimshawi	punalua	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018152135.1	D.paulistorum.06	Drosophila	paulistorum		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018151315.1	D.paulistorum.12	Drosophila	paulistorum		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_008042775.1	D.pectinifera	Drosophila	pectinifera						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035046225.1	D.pegasa	Drosophila	pegasa		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047485.1	D.peninsularis	Drosophila	peninsularis		repleta	mercatorum	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043855.1	D.percnosoma	Drosophila	percnosoma				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018904465.1	D.persimilis	Drosophila	persimilis		obscura	pseudoobscura	obscura	obscura	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043515.1	D.phalerata	Drosophila	phalerata		quinaria		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035043845.1	D.picticornis	Drosophila	picticornis		planitibia	picticornis	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035043785.1	D.planitibia	Drosophila	planitibia		planitibia	picticornis	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_036346975.1	D.prolongata	Drosophila	prolongata						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018151275.1	D.prosaltans	Drosophila	prosaltans		saltans	saltans	saltans	saltans	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037075205.1	D.prostipennis	Drosophila	prostipennis		melanogaster	takahashii	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150935.1	D.pruinosa	Drosophila	pruinosa		incertae sedis		immigrans-tripunctata	immigrans-tripunctata	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018153145.1	D.pseudoananassae.nigrens	Drosophila	pseudoananassae	nigrens	melanogaster	ananassae	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018153035.1	D.pseudoananassae.pseudoananassae	Drosophila	pseudoananassae	pseudoananassae	melanogaster	ananassae	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018904455.1	D.pseudoobscura	Drosophila	pseudoobscura		obscura	pseudoobscura	obscura	obscura	Nearctic	Cosmopolitan	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035046095.1	D.pseudotakahashii	Drosophila	pseudotakahashii		melanogaster	takahashii	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037075185.1	D.pseudotalamancana	Drosophila	pseudotalamancana		annulimana		virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043795.1	D.pullipes	Drosophila	pullipes		crucigera	pullipes	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_008042585.1	D.punjabensis	Drosophila	punjabiensis						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_037043535.1	D.putrida	Drosophila	putrida		testacea		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150725.1	D.quadrilineata	Drosophila	quadrilineata		immigrans	quadrilineata	immigrans-tripunctata	immigrans-tripunctata	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035043665.1	D.quasianomalipes	Drosophila	quasianomalipes		anomalipes		hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035047525.1	D.quinaria	Drosophila	quinaria		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043495.1	D.recens	Drosophila	recens		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043635.1	D.rellima	Drosophila	rellima		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037075345.1	D.repleta.15084-1611.06	Drosophila	repleta		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Cosmopolitan	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018903745.1	D.repleta.kari30	Drosophila	repleta		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Cosmopolitan	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150835.1	D.repletoides	Drosophila	repletoides		tumiditarsus		virilis-repleta	virilis-repleta	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018152115.1	D.rhopaloa	Drosophila	rhopaloa		melanogaster	rhopaloa	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043565.1	D.robusta	Drosophila	robusta		robusta	lacertosa	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035046165.1	D.rubida	Drosophila	rubida		immigrans	hypocausta	immigrans-tripunctata	immigrans-tripunctata	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_018153105.1	D.rufa	Drosophila	rufa		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018903575.1	D.saltans	Drosophila	saltans		saltans	saltans	saltans	saltans	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCF_016746245.2	D.santomea	Drosophila	santomea						Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018904445.1	D.sechellia	Drosophila	sechellia		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic	Seychelles	
+GCA_035043575.1	D.seclusa	Drosophila	seclusa				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035046125.1	D.serrata	Drosophila	serrata		melanogaster	montium	melanogaster	melanogaster	Australasian	Australasian	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_021224005.1	D.setifemur	Drosophila	setifemur						Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_035043505.1	D.setosimentum	Drosophila	setosimentum				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035047445.1	D.siamana	Drosophila	siamana		immigrans	hypocausta	immigrans-tripunctata	immigrans-tripunctata	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035043445.1	D.silvestris	Drosophila	silvestris		planitibia	planitibia	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018904415.1	D.simulans.006	Drosophila	simulans		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+sz129	D.simulans.sz129	Drosophila	simulans		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+sz232	D.simulans.sz232	Drosophila	simulans		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Cosmopolitan	Afrotropic		
+GCA_035043295.1	D.sordidapex	Drosophila	sordidapex				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035047465.1	D.sordidula	Drosophila	sordidula		robusta	robusta	virilis-repleta	virilis-repleta	Palearctic	Palearctic	EastAsia-Oceania	Japan	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150735.1	D.sp.14030-0761.01	Drosophila	sp.14030-0761.01		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		https://doi.org/10.1101/2023.10.02.560517
+GCA_018901795.1	D.sp.st01m	Drosophila	sp.st01m				immigrans-tripunctata	immigrans-tripunctata					
+GCA_018904355.1	D.sproati	Drosophila	sproati		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035047405.1	D.stalkeri	Drosophila	stalkeri		repleta	mulleri	virilis-repleta	virilis-repleta	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150375.1	D.sturtevanti	Drosophila	sturtevanti		saltans	sturtevanti	saltans	saltans	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018903505.1	D.subobscura	Drosophila	subobscura		obscura	obscura	obscura	obscura	Palearctic	Cosmopolitan	Palearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_037043435.1	D.suboccidentalis	Drosophila	suboccidentalis		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150325.1	D.subpulchrella	Drosophila	subpulchrella		melanogaster	suzukii	suzukii	suzukii	Indo-Malayan	Indo-Malayan	EastAsia-Oceania	Japan/China	GBIF
+GCA_037043405.1	D.subquinaria	Drosophila	subquinaria		quinaria		immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		GBIF
+GCA_035043285.1	D.subsilvestris	Drosophila	subsilvestris		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150745.1	D.sucinea	Drosophila	sucinea		willistoni	bocainensis	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_021223965.1	D.sulfurigaster	Drosophila	sulfurigaster						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCF_023558435.1	D.sulfurigaster.albostrigata	Drosophila	sulfurigaster	albostrigata					Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_023558465.2	D.sulfurigaster.bilimbata	Drosophila	sulfurigaster	bilimbata					Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_023558475.1	D.sulfurigaster.sulfurigaster	Drosophila	sulfurigaster	sulfurigaster					Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+	D.suzukii	Drosophila	suzukii		suzukii	suzukii	suzukii	suzukii	Indo-Malayan	Cosmopolitan	EastAsia-Oceania	ADDED-16/04/24	
+GCA_018152695.1	D.takahashii	Drosophila	takahashii		melanogaster	takahashii	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_008042535.1	D.tani	Drosophila	tani						Palearctic	Palearctic	Palearctic		GBIF
+GCA_035043275.1	D.tanythrix	Drosophila	tanythrix		antopocerus	diamphidiopoda	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018903625.1	D.teissieri.273.3	Drosophila	teissieri		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018903635.1	D.teissieri.CT02	Drosophila	teissieri		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043265.1	D.testacea	Drosophila	testacea		testacea		immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic	holarctic	GBIF
+GCA_018151095.1	D.triauraria	Drosophila	triauraria		melanogaster	montium	melanogaster	melanogaster	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043205.1	D.trichaetosa	Drosophila	trichaetosa				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035047385.1	D.tripunctata	Drosophila	tripunctata		tripunctata	tripunctata subgroup IV	immigrans-tripunctata	immigrans-tripunctata	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150885.1	D.tristis	Drosophila	tristis		obscura	obscura	obscura	obscura	Palearctic	Palearctic	Palearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018151085.1	D.tropicalis	Drosophila	tropicalis		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_008042515.1	D.truncata	Drosophila	truncata						Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035078745.1	D.ussurica	Diastata	ussurica				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035047365.1	D.ustulata	Drosophila	ustulata		immigrans	immigrans	immigrans-tripunctata	immigrans-tripunctata	Palearctic	Palearctic	Palearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035047325.1	D.vallismaia	Drosophila	vallismaia		melanogaster	ananassae	melanogaster	melanogaster	Afrotropic	Afrotropic	Afrotropic	Seychelles	Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018150405.1	D.varians	Drosophila	varians		melanogaster	ananassae	melanogaster	melanogaster	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035043025.1	D.villosipedis	Drosophila	villosipedis		grimshawi	orphnopeza	hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_018153695.1	D.virilis	Drosophila	virilis		virilis	virilis	virilis-repleta	virilis-repleta	Nearctic	Nearctic	Nearctic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018153465.1	D.willistoni.00	Drosophila	willistoni		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_018903445.1	D.willistoni.17	Drosophila	willistoni		willistoni	willistoni	willistoni	willistoni	Neotropic	Neotropic	Neotropic		Therese A. Markow; Patrick M. O'Grady (2005). Drosophila: A guide to species identification and use
+GCA_035046025.1	D.yakuba	Drosophila	yakuba		melanogaster	melanogaster	melanogaster	Dmel subgroup	Afrotropic	Afrotropic	Afrotropic		
+GCA_035043035.1	D.yooni	Drosophila	yooni				hawaiian	hawaiian	Pacific Islands	Pacific Islands	Hawaii	hawaiian	https://doi.org/10.1101/2023.10.02.560517
+GCA_035043045.1	H.alboralis	Hirtodrosophila	alboralis		quadrivittata	trivittata	Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_949708635.1	H.cameraria	Hirtodrosophila	cameraria						Palearctic	Palearctic	Palearctic		GBIF
+GCA_037075125.1	H.caputudis	Hirtodrosophila	caputudis		quadrivittata	quadrivittata	Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035043065.1	H.confusa	Hirtodrosophila	confusa		quadrivittata	confusa	Hirtodrosophila	Hirtodrosophila	Palearctic	Palearctic	Palearctic		GBIF
+GCA_037043425.1	H.duncani	Hirtodrosophila	duncani				Hirtodrosophila	Hirtodrosophila	Nearctic	Nearctic	Nearctic		GBIF
+GCA_035045125.1	H.guttata	Hypselothyrea	guttata				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_037075165.1	H.histrioides	Hirtodrosophila	histrioides				Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_035078685.1	H.nokogiri	Hirtodrosophila	nokogiri				Hirtodrosophila	Hirtodrosophila	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_035045065.1	H.trivittata	Hirtodrosophila	trivittata				Hirtodrosophila	Hirtodrosophila	Palearctic	Palearctic	Palearctic		GBIF
+GCA_035045005.1	L.aerea.MT83	Liodrosophila	aerea				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_037043415.1	L.aerea.TM23	Liodrosophila	aerea				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_035044965.1	L.andalusiaca	Lordiphosa	andalusiaca				Lordiphosa	Lordiphosa	Palearctic	Palearctic	Palearctic		GBIF
+GCA_018904275.1	L.clarofinis	Lordiphosa	clarofinis				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania	Korea	GBIF
+GCA_035044905.1	L.collinella	Lordiphosa	collinella				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_035044985.1	L.fenestrarum	Lordiphosa	fenestrarum				Lordiphosa	Lordiphosa	Palearctic	Palearctic	Palearctic	holarctic	GBIF
+GCA_035044805.1	L.maculata	Leucophenga	maculata				other drosophilids	other drosophilids	Palearctic	Indo-Malayan	Palearctic		GBIF
+GCA_037044535.1	L.magnipectinata	Lordiphosa	magnipectinata				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_018904225.1	L.mommai	Lordiphosa	mommai				Lordiphosa	Lordiphosa	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_035044765.1	L.montana	Leucophenga	montana				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		GBIF
+GCA_037075105.1	L.sabroskyi	Lissocephala	sabroskyi				other drosophilids	other drosophilids	Pacific Islands	Pacific Islands	EastAsia-Oceania	Micronesia	GBIF
+GCA_018904235.1	L.stackelbergi	Lordiphosa	stackelbergi				Lordiphosa	Lordiphosa	Palearctic	Palearctic	Palearctic		GBIF
+GCA_018903435.1	L.varia	Leucophenga	varia				other drosophilids	other drosophilids	Nearctic	Nearctic	Nearctic		
+GCA_037075075.1	M.cristata	Microdrosophila	cristata				other drosophilids	other drosophilids	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_037075045.1	M.parasiatica	Mulgravea	parasiatica				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_037040045.1	P.flavipennis	Phorticella	flavipennis				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_037044515.1	P.magna	Phortica	magna				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035044725.1	S.caliginosa	Scaptomyza	caliginosa				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii	hawaiian	GBIF
+GCA_035044605.1	S.cyrtandrae	Scaptomyza	cyrtandrae				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii	hawaiian	GBIF
+GCA_030179655.1	S.flava	Scaptomyza	flava						Palearctic	Palearctic	Palearctic		GBIF
+GCA_018901835.1	S.graminum	Scaptomyza	graminum				Scaptomyza	Scaptomyza	Palearctic	Palearctic	Palearctic	cosmopolitan	GBIF
+GCA_018152825.1	S.hsui	Scaptomyza	hsui				Scaptomyza	Scaptomyza	Nearctic	Nearctic	Nearctic		GBIF
+GCA_037040025.1	S.javana	Sphaerogastrella	javana				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_037075145.1	S.latifasciaeformis	Scaptodrosophila	latifasciaeformis				Scaptodrosophila	Scaptodrosophila	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCF_003285725.1	S.lebanonensis	Scaptodrosophila	lebanonensis						Palearctic	Palearctic	Palearctic		GBIF
+GCA_018904305.1	S.montana	Scaptomyza	montana				Scaptomyza	Scaptomyza	Nearctic	Nearctic	Nearctic		GBIF
+GCA_037044495.1	S.nigrithorax	Stegana	nigrithorax				other drosophilids	other drosophilids	Palearctic	Palearctic	Palearctic		GBIF
+GCA_018152965.1	S.pallida	Scaptomyza	pallida				Scaptomyza	Scaptomyza	Palearctic	Cosmopolitan	Palearctic	Native to PA	GBIF
+GCA_035044645.1	S.parva	Scaptomyza	parva				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii	hawaiian	GBIF
+GCA_035044585.1	S.polygonia	Scaptomyza	polygonia				Scaptomyza	Scaptomyza	Indo-Malayan	Palearctic	EastAsia-Oceania	Japan	GBIF
+GCA_035044485.1	S.reducta	Scaptomyza	reducta				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii	hawaiian	GBIF
+GCA_035078625.1	S.scaptomyzoidea	Scaptodrosophila	scaptomyzoidea				Scaptodrosophila	Scaptodrosophila	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_035044465.1	S.tumidula	Scaptomyza	tumidula				Scaptomyza	Scaptomyza	Pacific Islands	Pacific Islands	Hawaii	hawaiian	GBIF
+GCA_018151435.1	Z.africanus	Zaprionus	africanus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_035046045.1	Z.bogoriensis	Zaprionus	bogoriensis				Zaprionus	Zaprionus	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_018904165.1	Z.camerounensis	Zaprionus	camerounensis				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018903675.1	Z.capensis	Zaprionus	capensis				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018903715.1	Z.davidi	Zaprionus	davidi				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_037040005.1	Z.flavofinira	Zygothrica	flavofinira				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018903695.1	Z.gabonicus	Zaprionus	gabonicus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018904095.1	Z.ghesquierei	Zaprionus	ghesquierei				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018903395.1	Z.indianus.16GNV01	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic	Native to AT	GBIF
+GCA_018904605.1	Z.indianus.BS02	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic	Native to AT	GBIF
+GCA_018159335.1	Z.indianus.CDD18	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic	Native to AT	GBIF
+GCA_018904595.1	Z.indianus.RCR04	Zaprionus	indianus				Zaprionus	Zaprionus	Afrotropic	Cosmopolitan	Afrotropic	Native to AT	GBIF
+GCA_018151445.1	Z.inermis	Zaprionus	inermis				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018901885.1	Z.kolodkinae	Zaprionus	kolodkinae				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018901815.1	Z.lachaisei	Zaprionus	lachaisei				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_035044505.1	Z.lineosus	Zaprionus	lineosus				Zaprionus	Zaprionus	Australasian	Australasian	EastAsia-Oceania		GBIF
+GCA_018903425.1	Z.nigranus	Zaprionus	nigranus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		
+GCA_037044475.1	Z.obscuricornis	Zaprionus	obscuricornis				Zaprionus	Zaprionus	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018904035.1	Z.ornatus	Zaprionus	ornatus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_037044455.1	Z.quintamaculata	Zygothrica	quintamaculata				other drosophilids	other drosophilids	Indo-Malayan	Indo-Malayan	EastAsia-Oceania		GBIF
+GCA_018901805.1	Z.taronus	Zaprionus	taronus				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018151455.1	Z.tsacasi.car7-4	Zaprionus	tsacasi				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018904105.1	Z.tsacasi.jd01t	Zaprionus	tsacasi				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF
+GCA_018904025.1	Z.vittiger	Zaprionus	vittiger				Zaprionus	Zaprionus	Afrotropic	Afrotropic	Afrotropic		GBIF

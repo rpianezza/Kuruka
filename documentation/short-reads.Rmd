@@ -48,7 +48,7 @@ write_tsv(all_cn_data, "/Volumes/Storage/kuruka/deviaTE/kuruka-deviate.tsv")
 ```
 
 ```{r}
-(metadata <- read_tsv("/Volumes/Storage/mining/GenomeDelta2.0/utilities/dmel-metadata.tsv"))
+metadata <- read_tsv("/Volumes/Storage/kuruka/metadata/dmel-metadata-DEST2.tsv")
 ```
 
 ```{}
@@ -57,50 +57,6 @@ read_deviate <- function(path, meta){
 }
 
 kuruka <- read_deviate("/Volumes/Storage/kuruka/deviaTE/kuruka-deviate.tsv", metadata)
-```
-
-```{}
-colorcode <- c("#1a8a7fd5", "#d66d1eff", "#9390b7ff", "#e6ab02ff")
-
-find_diagnostic <- function(old_sample, new_sample, deviaTE, output){
-  
-snps_new <- deviaTE %>% filter(snp==TRUE, sample_id==new_sample) %>%
-   mutate(max = pmax(A, C, G, T, na.rm = TRUE), new_allele = case_when(max==A ~ "A", max==C ~ "C", max==T ~ "T", max==G ~ "G"), new_maf = max/cov) %>% select(TEfam, pos, new_allele, new_maf)
-
-snps_old <- deviaTE %>% filter(sample_id==old_sample, pos %in% snps_new$pos) %>%
-    mutate(max = pmax(A, C, G, T, na.rm = TRUE), old_allele = case_when(max==A ~ "A", max==C ~ "C", max==T ~ "T", max==G ~ "G"), old_maf = max/cov) %>% select(TEfam, pos, old_allele, old_maf)
-
-diagnostic_snps <- inner_join(snps_new, snps_old, by=c("TEfam","pos")) %>% filter(new_allele!=old_allele, old_maf > 0.95)
-
-toplot <- deviaTE %>% 
-  inner_join(diagnostic_snps, by="pos") %>%
-  filter(pos %in% diagnostic_snps$pos) %>%
-  pivot_longer(c(A, C, G, T)) %>%
-  rename(allele_cov = value, base = name) %>%
-  mutate(prop = allele_cov / cov)
-
-unique_pos <- unique(toplot$pos)
-
-# If there are more than 20 unique "pos" values, sample 20 of them randomly for visualization
-if (length(unique_pos) > 10) {
-  set.seed(123)
-  sampled_pos <- sample(unique_pos, 10)
-  toplot <- toplot %>% filter(pos %in% sampled_pos) %>% filter(!(sample_id %in% c("SRR8061818", "SRR8061819")))
-}
-
-plot_snps <- ggplot(toplot, aes(x = reorder(sample_id, year), y = prop, fill = base)) +
-  geom_bar(stat = "identity") +
-  scale_fill_manual(values=colorcode) +
-  facet_wrap(~ pos, ncol = 1) +
-  labs(x = "sample", y = "allele frequency", title = "Kuruka") +
-  theme(legend.position = "top", axis.text.x = element_blank(), axis.ticks.x = element_blank())
-
-ggsave(output, plot_snps, dpi=300, height = 12, width = 5)
-
-diagnostic_snps
-}
-
-(kuruka_diagnostic <- find_diagnostic("SRR8439136", "SRR23103981", kuruka, "/Volumes/Storage/kuruka/deviaTE/Kuruka-diagnostic.png"))
 ```
 
 ```{}
@@ -129,19 +85,18 @@ write_tsv(all_cn_data, "/Volumes/Storage/kuruka/deviaTE/kuruka-copynumber-nolowc
 ```{r}
 copynumber_kuruka <- read_tsv("/Volumes/Storage/kuruka/deviaTE/kuruka-copynumber-nolowcomplexity.tsv") %>% mutate(sample = gsub("/Volumes/Storage/kuruka/deviaTE/raw-data//", "", sample), sample = gsub(".fastq.sort.bam.Kuruka", "", sample))
 
-(metadata_copynumber <- inner_join(metadata, copynumber_kuruka, by="sample") %>% mutate(period = case_when(year<2010 ~ "<2010", year>=2010 & year<2017 ~ "2010-2017", TRUE ~ "2017-2020")) %>% arrange(desc(copynumber)))
+period_order <- c("<2010", "2010-2017", "2017-2019", "2020-2021")
+
+(metadata_copynumber <- inner_join(metadata, copynumber_kuruka, by="sample") %>% mutate(period = case_when(year<2010 ~ "<2010", year>=2010 & year<2017 ~ "2010-2017", year>=2017 & year < 2020 ~ "2017-2019", TRUE ~ "2020-2021"), period = factor(period, levels = period_order)) %>% arrange(desc(copynumber)))
 
 world_map <- map_data("world") %>% filter(region != "Antarctica")
-naeu_map <- world_map %>% filter(lat > 25 & lat < 70, long > -130 & long < 45)
-europe_map <- world_map %>% filter(lat > 36 & lat < 70, long > -10 & long < 40)
 
 (kuruka_timeline <- ggplot(metadata_copynumber, aes(x = year, y = copynumber, color = presence)) +
-        geom_point(alpha = 0.5, size = 3) +
+        geom_point(alpha = 0.3, size = 3) +
         labs(y = "copynumber", x = "", color = "Kuruka") +
         #scale_color_gradient(low = "darkgreen", high = "red") +
         scale_color_manual(values = c("darkgreen", "red")) +
-        theme(legend.position = "top", 
-              axis.text.x = element_text(angle = 45, hjust = 1)))
+        theme(legend.position = "top"))
 
 (c8_map <- ggplot() +
         geom_map(data = world_map, map = world_map, 
@@ -149,7 +104,7 @@ europe_map <- world_map %>% filter(lat > 36 & lat < 70, long > -10 & long < 40)
                  fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
         geom_point(data = metadata_copynumber, 
                    aes(x = lon, y = lat, color = presence), 
-                  size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.4) +
+                  size = 2, position = position_jitter(width = 2, height = 2), alpha = 0.3) +
         #scale_color_gradientn(colours = c("darkgreen", "red", "darkred")) +
     scale_color_manual(values = c("darkgreen", "red")) +
        theme(plot.title = element_text(hjust = 0.5), 
@@ -163,8 +118,8 @@ europe_map <- world_map %>% filter(lat > 36 & lat < 70, long > -10 & long < 40)
         labs(color = "Kuruka") +
        coord_cartesian(expand = FALSE))
 
-ggsave("/Volumes/Storage/kuruka/figures/map.png", c8_map, width = 12)
-ggsave("/Volumes/Storage/kuruka/figures/timeline.png", kuruka_timeline)
+ggsave("/Volumes/Storage/kuruka/figures/map.png", c8_map)
+ggsave("/Volumes/Storage/kuruka/figures/timeline.png", kuruka_timeline, height = 2, dpi = 600)
 write_tsv(metadata_copynumber, "/Volumes/Storage/kuruka/deviaTE/kuruka-copynumber-nolowcomplexity-metadata.tsv")
 ```
 
@@ -172,23 +127,25 @@ write_tsv(metadata_copynumber, "/Volumes/Storage/kuruka/deviaTE/kuruka-copynumbe
 (c8_timeline_zoom <- ggplot(metadata_copynumber, aes(x = year, y = copynumber, color = presence)) +
         geom_point(alpha = 0.5, size = 3) +
         labs(y = "copynumber", x = "", color = "Kuruka") +
-        #scale_color_gradient(low = "darkgreen", high = "red") +
         scale_color_manual(values = c("darkgreen", "red")) +
-        theme(legend.position = "top", 
-              axis.text.x = element_text(angle = 45, hjust = 1)) +
-        xlim(2000, 2020))
+        theme(legend.position = "top") +
+        xlim(2000, 2021))
 
-africa_map <- world_map %>% filter(lat > -45 & lat < 40, long > -20 & long < 55)
 c8_africa <- metadata_copynumber %>% filter(lat > -45 & lat < 40, lon > -20 & lon < 55)
-
-asia_map <- world_map %>% filter(lat > 10 & lat < 75, long > 80 & long < 140)
+c8_europe <- metadata_copynumber %>% filter(lat > 36 & lat < 70, lon > -10 & lon < 40)
 c8_asia <- metadata_copynumber %>% filter(lat > 10 & lat < 75, lon > 80 & lon < 140) %>% mutate(period = case_when(year==2017 ~ "2017", year==2020 ~ "2020", TRUE~"<2017"))
+
+naeu_map <- world_map %>% filter(lat > 25 & lat < 70, long > -130 & long < 45)
+europe_map <- world_map %>% filter(lat > 36 & lat < 70, long > -10 & long < 40)
+africa_map <- world_map %>% filter(lat > -45 & lat < 40, long > -20 & long < 55)
+asia_map <- world_map %>% filter(lat > 10 & lat < 75, long > 80 & long < 140)
+
   
-(c8_africa_map <- ggplot() +
-        geom_map(data = africa_map, map = africa_map, 
+(c8_europe_map <- ggplot() +
+        geom_map(data = europe_map, map = europe_map, 
                  aes(long, lat, map_id = region), 
                  fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
-        geom_point(data = c8_africa, 
+        geom_point(data = c8_europe, 
                    aes(x = lon, y = lat, color = presence), 
                    size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.4) +
         scale_color_manual(values = c("darkgreen", "red")) +
@@ -224,9 +181,9 @@ c8_asia <- metadata_copynumber %>% filter(lat > 10 & lat < 75, lon > 80 & lon < 
         labs(color = "Kuruka") +
         coord_cartesian(expand = FALSE))
 
-ggsave("/Volumes/Storage/kuruka/figures/map-africa.png", c8_africa_map)
+ggsave("/Volumes/Storage/kuruka/figures/map-europe.png", c8_europe_map)
 ggsave("/Volumes/Storage/kuruka/figures/map-asia.png", c8_asia_map)
-ggsave("/Volumes/Storage/kuruka/figures/timeline-recent.png", c8_timeline_zoom)
+ggsave("/Volumes/Storage/kuruka/figures/timeline-recent.png", c8_timeline_zoom, height = 2, width = 5, dpi = 600)
 ```
 
 ```{}

@@ -1,0 +1,41 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+suppressPackageStartupMessages(library(ggrepel))
+theme_set(theme_bw())
+```
+
+```{r}
+metadata <- read_tsv("/Volumes/Storage/kuruka/metadata/dmel-metadata.tsv")
+
+dest2 <- read_tsv("/Volumes/Storage/kuruka/metadata/TabS1.metadat.txt") %>% select(SequencingId, sampleId, lat, long, country, year, ) %>% na.omit() %>% dplyr::rename(sample = SequencingId, strain = sampleId, lon = long, location = country) %>% mutate(study = "DEST2", study_id = "Nunez2024", publication = "https://doi.org/10.1101/2024.11.10.622744")
+
+(dest2_southamerica <- read_tsv("/Volumes/Storage/kuruka/metadata/DEST2-SouthAmerica-metadata.txt"))
+
+(full_meta <- bind_rows(metadata, dest2, dest2_southamerica))
+
+write_tsv(full_meta, "/Volumes/Storage/kuruka/metadata/dmel-metadata-DEST2.tsv")
+```
+
+```{r}
+rounded <- full_meta %>% mutate(lat = round(lat, 0), lon = round(lon, 0))
+write_tsv(rounded, "/Volumes/Storage/kuruka/metadata/dmel-metadata-DEST2-rounded.tsv")
+```
+
+

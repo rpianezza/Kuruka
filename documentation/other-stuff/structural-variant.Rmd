@@ -1,0 +1,218 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+library(Biostrings)
+theme_set(theme_bw())
+```
+
+```{r}
+msa <- readDNAMultipleAlignment("/Volumes/Storage/kuruka/minimap-derecta/matches-kuruka.MSA", format = "fasta")
+msa_matrix <- as.matrix(msa)
+df <- as.data.frame(msa_matrix)
+
+base_colors <- c("A" = "#4DAF4A",  # Green
+                 "T" = "#E41A1C",  # Red
+                 "C" = "#377EB8",  # Blue
+                 "G" = "#984EA3",  # Purple
+                 "-" = "#333333")  # Dark gray for gaps
+
+(df_long <- as_tibble(df) %>%
+  mutate(insertion = rownames(df)) %>%  # Add row names as a new column
+  pivot_longer(cols = -insertion,      # Pivot all columns except 'insertion'
+               names_to = "position", # Column names become 'position'
+               values_to = "base") %>%
+  mutate(position = gsub("V", "", position)) %>% type_convert() %>% mutate(insertion_id = substr(insertion, 1, 2)))
+
+ggplot(df_long, aes(x = position, y = insertion_id, fill = base)) +
+  geom_tile() +
+  scale_fill_manual(values = base_colors) +
+  labs(x = "Position", y = "Insertion", fill = "Base") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+        axis.text.y = element_text(size = 8))
+
+
+df_long_zoom <- df_long %>% filter(position > 8400, position < 9000)
+
+ggplot(df_long_zoom, aes(x = position, y = insertion_id, fill = base)) +
+  geom_tile() +
+  scale_fill_manual(values = base_colors) +
+  labs(x = "Position", y = "Insertion", fill = "Base") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+        axis.text.y = element_text(size = 8))
+```
+
+```{r}
+(deviaTE <- read_tsv("/Volumes/Storage/kuruka/deviaTE/kuruka-deviate.tsv"))
+```
+
+```{r}
+metadata <- read_tsv("/Volumes/Storage/kuruka/metadata/dmel-metadata-DEST2.tsv")
+period_order <- c("<2010", "2010-2017", "2017-2019", "2020-2021")
+
+copynumber_kuruka <- read_tsv("/Volumes/Storage/kuruka/deviaTE/kuruka-copynumber-nolowcomplexity.tsv") %>% mutate(sample = gsub("/Volumes/Storage/kuruka/deviaTE/raw-data//", "", sample), sample = gsub(".fastq.sort.bam.Kuruka", "", sample)) %>% select(sample, presence, copynumber)
+
+copynumbers <- deviaTE %>%
+  mutate(SV = ifelse(pos > 7669 & pos < 8001, "SV", "other_sequence"), sample = gsub(".fastq.sort.bam", "", sample_id)) %>%
+  group_by(sample, SV) %>%
+  summarise(copynumber_part = mean(cov)) %>%
+  inner_join(metadata, by = "sample") %>% inner_join(copynumber_kuruka, by = "sample") %>%
+  filter(presence == "present")
+
+freq <- copynumbers %>% pivot_wider(names_from = SV, values_from = copynumber_part) %>% mutate(SV_frequency = SV/(SV+other_sequence)) %>% mutate(period = case_when(year<2010 ~ "<2010", year>=2010 & year<2017 ~ "2010-2017", year>=2017 & year < 2020 ~ "2017-2019", TRUE ~ "2020-2021"), period = factor(period, levels = period_order))
+```
+
+```{r}
+world_map <- map_data("world") %>% filter(region != "Antarctica")
+
+(kuruka_timeline <- ggplot(freq, aes(x = year, y = copynumber, color = SV_frequency)) +
+        geom_point(alpha = 0.3, size = 3) +
+        labs(y = "Copynumber", x = "", color = "Frequency of SV") +
+        scale_color_gradient(low = "orange", high = "purple") +
+        #scale_color_manual(values = c("darkgreen", "red")) +
+        theme(legend.position = "top", 
+              axis.text.x = element_text(angle = 45, hjust = 1)))
+
+(c8_map <- ggplot() +
+        geom_map(data = world_map, map = world_map, 
+                 aes(long, lat, map_id = region), 
+                 fill = "cornsilk2", color = "darkgrey", linewidth = 0.1) +
+        geom_point(data = freq, 
+                   aes(x = lon, y = lat, color = SV_frequency), 
+                  size = 3, position = position_jitter(width = 2, height = 2), alpha = 0.6) +
+        scale_color_gradient(low = "orange", high = "purple") +
+    #scale_color_manual(values = c("darkgreen", "red")) +
+       theme(plot.title = element_text(hjust = 0.5), 
+              axis.text = element_blank(), 
+              axis.title = element_blank(), 
+              axis.ticks = element_blank(), 
+              legend.position = "bottom", 
+              panel.grid = element_blank(), 
+             panel.background = element_rect(fill = "lightblue")) +
+        facet_wrap(~period) +
+        labs(color = "Frequency of SV") +
+       coord_cartesian(expand = FALSE))
+```
+
+The SV has no similarity to any of the other Dmel TEs.
+
+
+Is the SV present in the D. erecta insertion of Kuruka? Yes
+```{r}
+msa <- readDNAMultipleAlignment("/Volumes/Storage/kuruka/derecta/MSAdmel-dere/dboc-dere-dmel.MSA", format = "fasta")
+msa_matrix <- as.matrix(msa)
+df <- as.data.frame(msa_matrix)
+
+phylogenetic_order <- c("80", "2d", "d9", "01", "27", "33", "52", "15", "c2", "d5", "5b", "8f", "NW", "JA")
+
+base_colors <- c("A" = "#4DAF4A",  # Green
+                 "T" = "#E41A1C",  # Red
+                 "C" = "#377EB8",  # Blue
+                 "G" = "#984EA3",  # Purple
+                 "-" = "#333333")  # Dark gray for gaps
+
+(df_long <- as_tibble(df) %>%
+  mutate(insertion = rownames(df)) %>%  # Add row names as a new column
+  pivot_longer(cols = -insertion,      # Pivot all columns except 'insertion'
+               names_to = "position", # Column names become 'position'
+               values_to = "base") %>%
+  mutate(position = gsub("V", "", position)) %>% type_convert() %>% mutate(insertion_id = substr(insertion, 1, 2)) %>%
+  mutate(species = case_when(insertion_id == "NW" ~ "D.erecta", insertion_id == "JA" ~ "D.bocqueti", TRUE ~ "D.melanogaster")) %>%
+    mutate(insertion_id = factor(insertion_id, levels = phylogenetic_order)))
+
+(MSA_plot <- ggplot(df_long, aes(x = position, y = insertion_id, fill = base)) +
+  geom_tile() +
+  #facet_grid(rows = vars(species), scales = "free_y", space = "free_y") +
+  scale_fill_manual(values = base_colors) +
+  labs(x = "Position", y = "Insertion", fill = "Base") +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1),
+    axis.text.y = element_text(size = 8),
+    strip.text.y = element_text(size = 8)  # Smaller facet label text
+  ))
+
+ggsave("/Volumes/Storage/kuruka/figures/MSA-dere-dboc.png", MSA_plot)
+
+df_long_zoom <- df_long %>% filter(position > 8400, position < 9000)
+
+ggplot(df_long_zoom, aes(x = position, y = insertion_id, fill = base)) +
+  geom_tile() +
+  facet_grid(rows = vars(species), scales = "free_y", space = "free_y") +
+  scale_fill_manual(values = base_colors) +
+  labs(x = "Position", y = "Insertion", fill = "Base") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+        axis.text.y = element_text(size = 8))
+```
+
+```{r}
+(SV_coordinates <- df_long %>% filter(insertion_id == "d5", position >= 8482, position <= 8874))
+
+(SV_sequence <- df_long %>% filter(insertion_id == "c2", position >= 8482, position <= 8874) %>% filter(base != "-"))
+
+SV_sequence_string <- SV_sequence %>%
+  arrange(position) %>%                # ensure it's ordered
+  pull(base) %>%                      # get the vector of bases
+  paste0(collapse = "")               # collapse into one string
+
+fasta_header <- ">c2_insertion_8482_8874"
+fasta_lines <- c(fasta_header, SV_sequence_string)
+writeLines(fasta_lines, "/Volumes/Storage/kuruka/derecta/MSAdmel-dere/SV-c2.fasta")
+```
+
+
+```{r}
+phylogenetic_order <- c("80d35ee7-2d67-42b5-b820-c368cdc3275f:7-8702(-)", "2dd76f6c-12cd-418a-a902-ea8ee079a185:2227-11013(-)", "d94cf95b-c0a9-4f45-aca6-f19ad0f90738:4459-13319(+)", "01d9a175-2765-4d9c-984f-4f1c1486d055:3-8788(+)", "27e9db99-9b8f-4760-a8fc-b997844d014c:17875-26717(-)", "3327a95b-1868-4e94-9e46-d6f5cda49636:22376-31189(-)", "5257b8f0-f4c8-4b07-b303-d009b8497439:912-9261(+)", "c2e40ece-673e-4461-a77a-da185b7a3006:6345-15580(-)", "15840faa-b980-4067-b884-a9448054cfa5:4430-12977(-)", "d5667f51-91f8-4fcd-8a2b-5175a62fafce:566-9033(+)", "8f0d4808-721b-4d87-90a4-88b6108e758e:19905-28379(+)", "5b9b2edc-7750-4c42-bfaf-38d596d81127:17657-26131(-)", "JAECXF010000023.1:95529-103026(-)", "NW_020825209.1:15616978-15625638()", "JAEIGO010000916.1:14708533-14717367(-)", "JAEIGO010000394.1:124852-133216(-)", "JAEIGO010000089.1:549077-557943(-)", "JAEIGO010000862.1:363024-371734(-)")
+
+msa <- readDNAMultipleAlignment("/Volumes/Storage/kuruka/derecta/dchauvachae/daff-dboc-dere-dmel.MSA", format = "fasta")
+msa_matrix <- as.matrix(msa)
+df <- as.data.frame(msa_matrix)
+
+base_colors <- c("A" = "#4DAF4A",  # Green
+                 "T" = "#E41A1C",  # Red
+                 "C" = "#377EB8",  # Blue
+                 "G" = "#984EA3",  # Purple
+                 "-" = "#333333")  # Dark gray for gaps
+
+(df_long <- as_tibble(df) %>%
+  mutate(insertion = rownames(df)) %>%  # Add row names as a new column
+  pivot_longer(cols = -insertion,      # Pivot all columns except 'insertion'
+               names_to = "position", # Column names become 'position'
+               values_to = "base") %>%
+  mutate(position = gsub("V", "", position)) %>% type_convert() %>%
+  mutate(insertion = factor(insertion, levels = phylogenetic_order)))
+
+(MSA_plot <- ggplot(df_long, aes(x = position, y = insertion, fill = base)) +
+  geom_tile() +
+  scale_fill_manual(values = base_colors) +
+  labs(x = "Position", y = "Insertion", fill = "Base") +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1),
+    axis.text.y = element_text(size = 8),
+    strip.text.y = element_text(size = 8)  # Smaller facet label text
+  ))
+
+ggsave("/Volumes/Storage/kuruka/figures/MSA-dchau.png", MSA_plot)
+```
+
+
+
+
+
+

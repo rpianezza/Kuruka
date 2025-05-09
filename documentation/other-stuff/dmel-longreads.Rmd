@@ -1,0 +1,42 @@
+---
+title: "Kuruka"
+output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: sentence
+    author: Riccardo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(svglite))
+theme_set(theme_bw())
+```
+
+```{}
+for i in /mnt/data2/riccardo/dmel-longreads/*.fa; do /home/riccardo/repeatannotation/RepeatMasker/RepeatMasker -pa 20 -no_is -s -nolow -dir . -lib ../ref/kuruka.fasta $i;done
+```
+
+```{r}
+columns_RM <- c("SWscore", "pdiv", "pdel", "pins", "contig", "qstart", "qend", "qleft",  "strand", "te", "class", "position_in_repeat_begin", "position_in_repeat_end", "position_in_repeat_left", "ID")
+
+folder_path <- "/Volumes/Storage/kuruka/dmel-longreads/"
+file_list <- list.files(path = folder_path, pattern = "\\.ori\\.out$", full.names = TRUE)
+
+read_and_process <- function(file) {
+  df <- read_table(file, col_names = columns_RM) %>%
+    mutate(sample = basename(file))  # Add sample column with filename
+  return(df)
+}
+
+combined_data <- map_dfr(file_list, read_and_process)
+
+combined_data %>% arrange(desc(SWscore))
+```
