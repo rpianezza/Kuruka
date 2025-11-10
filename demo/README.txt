@@ -26,6 +26,7 @@ Installation on a typical desktop computer with a stable internet connection tak
 A demonstration dataset is provided to illustrate the core functions of the pipeline. To run the demo, navigate to the demo directory and execute the run_demo.sh script. This demo performs short-read mapping, extraction of divergent unmapped reads, de novo assembly.
 
 Example call:
+"gunzip short-reads.fastq"
 "mkdir output"
 "bash run-demo.sh short_reads.fastq genomes/reference-genome.fasta genomes/bacteria.fasta output 10"
 
