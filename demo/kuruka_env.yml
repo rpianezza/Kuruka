@@ -1,0 +1,26 @@
+name: kuruka-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  # Core tools
+  - python=3.11
+  - bwa
+  - samtools
+  - spades
+  - bbmap
+  - jellyfish
+
+  # Python dependencies
+  - numpy
+  - pandas
+  - biopython
+
+  # Optional helpers
+  - pip
+  - pip:
+      - tqdm
+      - matplotlib
+
